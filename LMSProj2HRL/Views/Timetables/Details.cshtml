@@ -1,0 +1,66 @@
+﻿@model LMSProj2HRL.Models.Timetable
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Timetable</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SchoolClass.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SchoolClass.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lesson1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lesson1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lesson2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lesson2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lesson3)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lesson3)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lesson4)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lesson4)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TtId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

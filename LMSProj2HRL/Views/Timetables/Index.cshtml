@@ -1,0 +1,63 @@
+﻿@model IEnumerable<LMSProj2HRL.Models.Timetable>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SchoolClass.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lesson1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lesson2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lesson3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lesson4)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SchoolClass.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lesson1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lesson2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lesson3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lesson4)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TtId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TtId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TtId })
+        </td>
+    </tr>
+}
+
+</table>

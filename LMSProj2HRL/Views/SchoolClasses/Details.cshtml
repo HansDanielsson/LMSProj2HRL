@@ -1,0 +1,50 @@
+﻿@model LMSProj2HRL.Models.SchoolClass
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SchoolClass</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Student.LoginId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Student.LoginId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Teacher.LoginId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Teacher.LoginId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Timetable.Lesson1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Timetable.Lesson1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SCId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<LMSProj2HRL.Models.Teacher>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LoginId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PassWD)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoginId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PassWD)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TeId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TeId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TeId })
+        </td>
+    </tr>
+}
+
+</table>
