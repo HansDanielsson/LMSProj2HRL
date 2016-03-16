@@ -43,6 +43,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -161,12 +163,49 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DataAccessLayer\ItemContext.cs" />
+    <Compile Include="DbSchema\ModelSchema.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSchema.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbSchema\ModelSchema.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSchema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbSchema\ModelSchema.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelSchema.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DbSchema\SchoolClasses.cs">
+      <DependentUpon>ModelSchema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbSchema\Students.cs">
+      <DependentUpon>ModelSchema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbSchema\Teachers.cs">
+      <DependentUpon>ModelSchema.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbSchema\Timetables.cs">
+      <DependentUpon>ModelSchema.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603161417051_Initial.cs" />
+    <Compile Include="Migrations\201603161417051_Initial.Designer.cs">
+      <DependentUpon>201603161417051_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\SchoolClass.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\Teacher.cs" />
+    <Compile Include="Models\Timetable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -179,6 +218,23 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="DbSchema\ModelSchema.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelSchema.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DbSchema\ModelSchema.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelSchema.edmx</DependentUpon>
+      <LastGenOutput>ModelSchema.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DbSchema\ModelSchema.edmx.diagram">
+      <DependentUpon>ModelSchema.edmx</DependentUpon>
+    </Content>
+    <Content Include="DbSchema\ModelSchema.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelSchema.edmx</DependentUpon>
+      <LastGenOutput>ModelSchema.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -236,6 +292,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201603161417051_Initial.resx">
+      <DependentUpon>201603161417051_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

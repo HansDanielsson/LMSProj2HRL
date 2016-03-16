@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="SchoolClasses">
+          <Key>
+            <PropertyRef Name="SCId" />
+          </Key>
+          <Property Name="SCId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="TeId" Type="int" Nullable="false" />
+          <Property Name="StId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="StId" />
+          </Key>
+          <Property Name="StId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginId" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FName" Type="nvarchar(max)" />
+          <Property Name="SName" Type="nvarchar(max)" />
+          <Property Name="PassWD" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Teachers">
+          <Key>
+            <PropertyRef Name="TeId" />
+          </Key>
+          <Property Name="TeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginId" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FName" Type="nvarchar(max)" />
+          <Property Name="SName" Type="nvarchar(max)" />
+          <Property Name="PassWD" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Timetables">
+          <Key>
+            <PropertyRef Name="TtId" />
+          </Key>
+          <Property Name="TtId" Type="int" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
+          <Property Name="Lesson1" Type="nvarchar(max)" />
+          <Property Name="Lesson2" Type="nvarchar(max)" />
+          <Property Name="Lesson3" Type="nvarchar(max)" />
+          <Property Name="Lesson4" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_dbo_SchoolClasses_dbo_Students_StId">
+          <End Role="Students" Type="Self.Students" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SchoolClasses" Type="Self.SchoolClasses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StId" />
+            </Principal>
+            <Dependent Role="SchoolClasses">
+              <PropertyRef Name="StId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_SchoolClasses_dbo_Teachers_TeId">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SchoolClasses" Type="Self.SchoolClasses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="TeId" />
+            </Principal>
+            <Dependent Role="SchoolClasses">
+              <PropertyRef Name="TeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Timetables_dbo_SchoolClasses_TtId">
+          <End Role="SchoolClasses" Type="Self.SchoolClasses" Multiplicity="1" />
+          <End Role="Timetables" Type="Self.Timetables" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolClasses">
+              <PropertyRef Name="SCId" />
+            </Principal>
+            <Dependent Role="Timetables">
+              <PropertyRef Name="TtId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="SchoolClasses" EntityType="Self.SchoolClasses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Timetables" EntityType="Self.Timetables" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_SchoolClasses_dbo_Students_StId" Association="Self.FK_dbo_SchoolClasses_dbo_Students_StId">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="SchoolClasses" EntitySet="SchoolClasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_SchoolClasses_dbo_Teachers_TeId" Association="Self.FK_dbo_SchoolClasses_dbo_Teachers_TeId">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="SchoolClasses" EntitySet="SchoolClasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Timetables_dbo_SchoolClasses_TtId" Association="Self.FK_dbo_Timetables_dbo_SchoolClasses_TtId">
+            <End Role="SchoolClasses" EntitySet="SchoolClasses" />
+            <End Role="Timetables" EntitySet="Timetables" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="SchoolClasses">
+          <Key>
+            <PropertyRef Name="SCId" />
+          </Key>
+          <Property Name="SCId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TeId" Type="Int32" Nullable="false" />
+          <Property Name="StId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_dbo_SchoolClasses_dbo_Students_StId" FromRole="SchoolClasses" ToRole="Students" />
+          <NavigationProperty Name="Teachers" Relationship="Self.FK_dbo_SchoolClasses_dbo_Teachers_TeId" FromRole="SchoolClasses" ToRole="Teachers" />
+          <NavigationProperty Name="Timetables" Relationship="Self.FK_dbo_Timetables_dbo_SchoolClasses_TtId" FromRole="SchoolClasses" ToRole="Timetables" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="StId" />
+          </Key>
+          <Property Name="StId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PassWD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="SchoolClasses" Relationship="Self.FK_dbo_SchoolClasses_dbo_Students_StId" FromRole="Students" ToRole="SchoolClasses" />
+        </EntityType>
+        <EntityType Name="Teachers">
+          <Key>
+            <PropertyRef Name="TeId" />
+          </Key>
+          <Property Name="TeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PassWD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="SchoolClasses" Relationship="Self.FK_dbo_SchoolClasses_dbo_Teachers_TeId" FromRole="Teachers" ToRole="SchoolClasses" />
+        </EntityType>
+        <EntityType Name="Timetables">
+          <Key>
+            <PropertyRef Name="TtId" />
+          </Key>
+          <Property Name="TtId" Type="Int32" Nullable="false" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Lesson1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Lesson2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Lesson3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Lesson4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SchoolClasses" Relationship="Self.FK_dbo_Timetables_dbo_SchoolClasses_TtId" FromRole="Timetables" ToRole="SchoolClasses" />
+        </EntityType>
+        <Association Name="FK_dbo_SchoolClasses_dbo_Students_StId">
+          <End Role="Students" Type="Self.Students" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SchoolClasses" Type="Self.SchoolClasses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="StId" />
+            </Principal>
+            <Dependent Role="SchoolClasses">
+              <PropertyRef Name="StId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_SchoolClasses_dbo_Teachers_TeId">
+          <End Role="Teachers" Type="Self.Teachers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SchoolClasses" Type="Self.SchoolClasses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teachers">
+              <PropertyRef Name="TeId" />
+            </Principal>
+            <Dependent Role="SchoolClasses">
+              <PropertyRef Name="TeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Timetables_dbo_SchoolClasses_TtId">
+          <End Role="SchoolClasses" Type="Self.SchoolClasses" Multiplicity="1" />
+          <End Role="Timetables" Type="Self.Timetables" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolClasses">
+              <PropertyRef Name="SCId" />
+            </Principal>
+            <Dependent Role="Timetables">
+              <PropertyRef Name="TtId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="SchoolClasses" EntityType="Self.SchoolClasses" />
+          <EntitySet Name="Students" EntityType="Self.Students" />
+          <EntitySet Name="Teachers" EntityType="Self.Teachers" />
+          <EntitySet Name="Timetables" EntityType="Self.Timetables" />
+          <AssociationSet Name="FK_dbo_SchoolClasses_dbo_Students_StId" Association="Self.FK_dbo_SchoolClasses_dbo_Students_StId">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="SchoolClasses" EntitySet="SchoolClasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_SchoolClasses_dbo_Teachers_TeId" Association="Self.FK_dbo_SchoolClasses_dbo_Teachers_TeId">
+            <End Role="Teachers" EntitySet="Teachers" />
+            <End Role="SchoolClasses" EntitySet="SchoolClasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Timetables_dbo_SchoolClasses_TtId" Association="Self.FK_dbo_Timetables_dbo_SchoolClasses_TtId">
+            <End Role="SchoolClasses" EntitySet="SchoolClasses" />
+            <End Role="Timetables" EntitySet="Timetables" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="SchoolClasses">
+            <EntityTypeMapping TypeName="Model.SchoolClasses">
+              <MappingFragment StoreEntitySet="SchoolClasses">
+                <ScalarProperty Name="SCId" ColumnName="SCId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TeId" ColumnName="TeId" />
+                <ScalarProperty Name="StId" ColumnName="StId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="Model.Students">
+              <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="StId" ColumnName="StId" />
+                <ScalarProperty Name="LoginId" ColumnName="LoginId" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="SName" ColumnName="SName" />
+                <ScalarProperty Name="PassWD" ColumnName="PassWD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teachers">
+            <EntityTypeMapping TypeName="Model.Teachers">
+              <MappingFragment StoreEntitySet="Teachers">
+                <ScalarProperty Name="TeId" ColumnName="TeId" />
+                <ScalarProperty Name="LoginId" ColumnName="LoginId" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="SName" ColumnName="SName" />
+                <ScalarProperty Name="PassWD" ColumnName="PassWD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Timetables">
+            <EntityTypeMapping TypeName="Model.Timetables">
+              <MappingFragment StoreEntitySet="Timetables">
+                <ScalarProperty Name="TtId" ColumnName="TtId" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="Lesson1" ColumnName="Lesson1" />
+                <ScalarProperty Name="Lesson2" ColumnName="Lesson2" />
+                <ScalarProperty Name="Lesson3" ColumnName="Lesson3" />
+                <ScalarProperty Name="Lesson4" ColumnName="Lesson4" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
