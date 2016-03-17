@@ -31,8 +31,9 @@
                             <strong>@Html.Encode("Hejsan")</strong>
                             @Html.ActionLink("Loggaut", "Logout", "User")
                         </li>
-                        <li>@Html.ActionLink("Studenter", "Index", "Students")</li>
                         <li>@Html.ActionLink("Lärare", "Index", "Teachers")</li>
+                        <li>@Html.ActionLink("Studenter", "Index", "Students")</li>
+                        <li>@Html.ActionLink("Klass", "Index", "SchoolClasses")</li>
                         <li>@Html.ActionLink("Schema", "Index", "Timetables")</li>
                     }
                     else
