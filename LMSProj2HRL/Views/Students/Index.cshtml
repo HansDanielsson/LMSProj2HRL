@@ -7,7 +7,7 @@
 <h2>Student</h2>
 
 <p>
-    @Html.ActionLink("Registrera ny", "Create")
+    @Html.ActionLink("Skapa", "Create")
 </p>
 <table class="table">
     <tr>
@@ -47,9 +47,9 @@
 @*            @Html.DisplayFor(modelItem => item.PassWD)*@
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.StId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.StId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.StId })
+            @Html.ActionLink("Ändra", "Edit", new { id=item.StId }) |
+            @Html.ActionLink("Detaljer", "Details", new { id=item.StId }) |
+            @Html.ActionLink("Ta bort", "Delete", new { id=item.StId })
         </td>
     </tr>
 }

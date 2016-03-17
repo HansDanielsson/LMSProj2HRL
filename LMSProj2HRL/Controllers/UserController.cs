@@ -14,6 +14,7 @@ namespace LMSProj2HRL.Controllers
         {
             return View();
         }
+
         [HttpGet]
         public ActionResult Login()
         {
