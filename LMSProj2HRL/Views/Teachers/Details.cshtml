@@ -1,13 +1,13 @@
 ﻿@model LMSProj2HRL.Models.Teacher
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detaljer";
 }
 
-<h2>Details</h2>
+<h2>Detaljer</h2>
 
 <div>
-    <h4>Teacher</h4>
+    <h4>Lärare</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -34,17 +34,17 @@
             @Html.DisplayFor(model => model.SName)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.PassWD)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.PassWD)
-        </dd>
+        </dd>*@
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.TeId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Ändra", "Edit", new { id = Model.TeId }) |
+    @Html.ActionLink("Tillbaka", "Index")
 </p>
