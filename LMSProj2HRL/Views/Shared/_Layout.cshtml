@@ -24,8 +24,25 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Om", "About", "Home")</li>
                     <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
+
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>
+                            <strong>@Html.Encode("Hejsan")</strong>
+                            @Html.ActionLink("Loggaut", "Logout", "User")
+                        </li>
+                        <li>@Html.ActionLink("Studenter", "Index", "Students")</li>
+                        <li>@Html.ActionLink("Lärare", "Index", "Teachers")</li>
+                        <li>@Html.ActionLink("Schema", "Index", "Timetables")</li>
+                    }
+                    else
+                    {
+                        <li>
+                            @Html.ActionLink("Loggain", "Login", "User")
+                        </li>
+                    }
                 </ul>
-@*                @Html.Partial("_LoginPartial")*@
+                @*                @Html.Partial("_LoginPartial")*@
             </div>
         </div>
     </div>
