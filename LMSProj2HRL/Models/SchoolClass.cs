@@ -23,13 +23,6 @@ namespace LMSProj2HRL.Models
         public virtual Teacher Teacher { get; set; }
         #endregion Teacher Foreign Key
 
-        #region Student Foreign Key
-        public int StId { get; set; }
-
-        [ForeignKey("StId")]
-        public virtual Student Student { get; set; }
-        #endregion Student Foreign Key
-
         #region Timetable Foreign Key
         public virtual Timetable Timetable { get; set; }
         #endregion Timetable Foreign Key

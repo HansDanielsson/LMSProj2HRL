@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -25,5 +26,12 @@ namespace LMSProj2HRL.Models
         [Required]
         [DisplayName("Lösenord")]
         public string PassWD { get; set; }
+
+        #region SchoolClass Foreign Key
+        public int SCId { get; set; }
+
+        [ForeignKey("SCId")]
+        public virtual SchoolClass SchoolClass { get; set; }
+        #endregion SchoolClass Foreign Key
     }
 }

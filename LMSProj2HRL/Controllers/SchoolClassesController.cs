@@ -18,7 +18,7 @@ namespace LMSProj2HRL.Controllers
         // GET: SchoolClasses
         public ActionResult Index()
         {
-            var schoolClass = db.SchoolClass.Include(s => s.Student).Include(s => s.Teacher).Include(s => s.Timetable);
+            var schoolClass = db.SchoolClass.Include(s => s.Teacher).Include(s => s.Timetable);
             return View(schoolClass.ToList());
         }
 
@@ -40,7 +40,6 @@ namespace LMSProj2HRL.Controllers
         // GET: SchoolClasses/Create
         public ActionResult Create()
         {
-            ViewBag.StId = new SelectList(db.Student, "StId", "LoginId");
             ViewBag.TeId = new SelectList(db.Teacher, "TeId", "LoginId");
             ViewBag.SCId = new SelectList(db.Timetable, "TtId", "Lesson1");
             return View();
@@ -51,7 +50,7 @@ namespace LMSProj2HRL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SCId,Name,TeId,StId")] SchoolClass schoolClass)
+        public ActionResult Create([Bind(Include = "SCId,Name,TeId")] SchoolClass schoolClass)
         {
             if (ModelState.IsValid)
             {
@@ -60,7 +59,6 @@ namespace LMSProj2HRL.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.StId = new SelectList(db.Student, "StId", "LoginId", schoolClass.StId);
             ViewBag.TeId = new SelectList(db.Teacher, "TeId", "LoginId", schoolClass.TeId);
             ViewBag.SCId = new SelectList(db.Timetable, "TtId", "Lesson1", schoolClass.SCId);
             return View(schoolClass);
@@ -78,7 +76,6 @@ namespace LMSProj2HRL.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.StId = new SelectList(db.Student, "StId", "LoginId", schoolClass.StId);
             ViewBag.TeId = new SelectList(db.Teacher, "TeId", "LoginId", schoolClass.TeId);
             ViewBag.SCId = new SelectList(db.Timetable, "TtId", "Lesson1", schoolClass.SCId);
             return View(schoolClass);
@@ -89,7 +86,7 @@ namespace LMSProj2HRL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SCId,Name,TeId,StId")] SchoolClass schoolClass)
+        public ActionResult Edit([Bind(Include = "SCId,Name,TeId")] SchoolClass schoolClass)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +94,6 @@ namespace LMSProj2HRL.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.StId = new SelectList(db.Student, "StId", "LoginId", schoolClass.StId);
             ViewBag.TeId = new SelectList(db.Teacher, "TeId", "LoginId", schoolClass.TeId);
             ViewBag.SCId = new SelectList(db.Timetable, "TtId", "Lesson1", schoolClass.SCId);
             return View(schoolClass);

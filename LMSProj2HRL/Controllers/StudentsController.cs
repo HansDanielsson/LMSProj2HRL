@@ -18,7 +18,8 @@ namespace LMSProj2HRL.Controllers
         // GET: Students
         public ActionResult Index()
         {
-            return View(db.Student.ToList());
+            var student = db.Student.Include(s => s.SchoolClass);
+            return View(student.ToList());
         }
 
         // GET: Students/Details/5
@@ -39,6 +40,7 @@ namespace LMSProj2HRL.Controllers
         // GET: Students/Create
         public ActionResult Create()
         {
+            ViewBag.SCId = new SelectList(db.SchoolClass, "SCId", "Name");
             return View();
         }
 
@@ -47,7 +49,7 @@ namespace LMSProj2HRL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "StId,LoginId,FName,SName,PassWD")] Student student)
+        public ActionResult Create([Bind(Include = "StId,LoginId,FName,SName,PassWD,SCId")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -56,6 +58,7 @@ namespace LMSProj2HRL.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.SCId = new SelectList(db.SchoolClass, "SCId", "Name", student.SCId);
             return View(student);
         }
 
@@ -71,6 +74,7 @@ namespace LMSProj2HRL.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.SCId = new SelectList(db.SchoolClass, "SCId", "Name", student.SCId);
             return View(student);
         }
 
@@ -79,7 +83,7 @@ namespace LMSProj2HRL.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "StId,LoginId,FName,SName,PassWD")] Student student)
+        public ActionResult Edit([Bind(Include = "StId,LoginId,FName,SName,PassWD,SCId")] Student student)
         {
             if (ModelState.IsValid)
             {
@@ -87,6 +91,7 @@ namespace LMSProj2HRL.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.SCId = new SelectList(db.SchoolClass, "SCId", "Name", student.SCId);
             return View(student);
         }
 

@@ -12,7 +12,6 @@
           <Property Name="SCId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
           <Property Name="TeId" Type="int" Nullable="false" />
-          <Property Name="StId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Students">
           <Key>
@@ -23,6 +22,7 @@
           <Property Name="FName" Type="nvarchar(max)" />
           <Property Name="SName" Type="nvarchar(max)" />
           <Property Name="PassWD" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SCId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Teachers">
           <Key>
@@ -45,20 +45,6 @@
           <Property Name="Lesson3" Type="nvarchar(max)" />
           <Property Name="Lesson4" Type="nvarchar(max)" />
         </EntityType>
-        <Association Name="FK_dbo_SchoolClasses_dbo_Students_StId">
-          <End Role="Students" Type="Self.Students" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="SchoolClasses" Type="Self.SchoolClasses" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Students">
-              <PropertyRef Name="StId" />
-            </Principal>
-            <Dependent Role="SchoolClasses">
-              <PropertyRef Name="StId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_SchoolClasses_dbo_Teachers_TeId">
           <End Role="Teachers" Type="Self.Teachers" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -70,6 +56,20 @@
             </Principal>
             <Dependent Role="SchoolClasses">
               <PropertyRef Name="TeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Students_dbo_SchoolClasses_SCId">
+          <End Role="SchoolClasses" Type="Self.SchoolClasses" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolClasses">
+              <PropertyRef Name="SCId" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="SCId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -90,13 +90,13 @@
           <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Timetables" EntityType="Self.Timetables" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_dbo_SchoolClasses_dbo_Students_StId" Association="Self.FK_dbo_SchoolClasses_dbo_Students_StId">
-            <End Role="Students" EntitySet="Students" />
-            <End Role="SchoolClasses" EntitySet="SchoolClasses" />
-          </AssociationSet>
           <AssociationSet Name="FK_dbo_SchoolClasses_dbo_Teachers_TeId" Association="Self.FK_dbo_SchoolClasses_dbo_Teachers_TeId">
             <End Role="Teachers" EntitySet="Teachers" />
             <End Role="SchoolClasses" EntitySet="SchoolClasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Students_dbo_SchoolClasses_SCId" Association="Self.FK_dbo_Students_dbo_SchoolClasses_SCId">
+            <End Role="SchoolClasses" EntitySet="SchoolClasses" />
+            <End Role="Students" EntitySet="Students" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_Timetables_dbo_SchoolClasses_TtId" Association="Self.FK_dbo_Timetables_dbo_SchoolClasses_TtId">
             <End Role="SchoolClasses" EntitySet="SchoolClasses" />
@@ -115,9 +115,8 @@
           <Property Name="SCId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="TeId" Type="Int32" Nullable="false" />
-          <Property Name="StId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Students" Relationship="Self.FK_dbo_SchoolClasses_dbo_Students_StId" FromRole="SchoolClasses" ToRole="Students" />
           <NavigationProperty Name="Teachers" Relationship="Self.FK_dbo_SchoolClasses_dbo_Teachers_TeId" FromRole="SchoolClasses" ToRole="Teachers" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_dbo_Students_dbo_SchoolClasses_SCId" FromRole="SchoolClasses" ToRole="Students" />
           <NavigationProperty Name="Timetables" Relationship="Self.FK_dbo_Timetables_dbo_SchoolClasses_TtId" FromRole="SchoolClasses" ToRole="Timetables" />
         </EntityType>
         <EntityType Name="Students">
@@ -129,7 +128,8 @@
           <Property Name="FName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="PassWD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="SchoolClasses" Relationship="Self.FK_dbo_SchoolClasses_dbo_Students_StId" FromRole="Students" ToRole="SchoolClasses" />
+          <Property Name="SCId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SchoolClasses" Relationship="Self.FK_dbo_Students_dbo_SchoolClasses_SCId" FromRole="Students" ToRole="SchoolClasses" />
         </EntityType>
         <EntityType Name="Teachers">
           <Key>
@@ -154,20 +154,6 @@
           <Property Name="Lesson4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="SchoolClasses" Relationship="Self.FK_dbo_Timetables_dbo_SchoolClasses_TtId" FromRole="Timetables" ToRole="SchoolClasses" />
         </EntityType>
-        <Association Name="FK_dbo_SchoolClasses_dbo_Students_StId">
-          <End Role="Students" Type="Self.Students" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="SchoolClasses" Type="Self.SchoolClasses" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Students">
-              <PropertyRef Name="StId" />
-            </Principal>
-            <Dependent Role="SchoolClasses">
-              <PropertyRef Name="StId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_SchoolClasses_dbo_Teachers_TeId">
           <End Role="Teachers" Type="Self.Teachers" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -179,6 +165,20 @@
             </Principal>
             <Dependent Role="SchoolClasses">
               <PropertyRef Name="TeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Students_dbo_SchoolClasses_SCId">
+          <End Role="SchoolClasses" Type="Self.SchoolClasses" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SchoolClasses">
+              <PropertyRef Name="SCId" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="SCId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -199,13 +199,13 @@
           <EntitySet Name="Students" EntityType="Self.Students" />
           <EntitySet Name="Teachers" EntityType="Self.Teachers" />
           <EntitySet Name="Timetables" EntityType="Self.Timetables" />
-          <AssociationSet Name="FK_dbo_SchoolClasses_dbo_Students_StId" Association="Self.FK_dbo_SchoolClasses_dbo_Students_StId">
-            <End Role="Students" EntitySet="Students" />
-            <End Role="SchoolClasses" EntitySet="SchoolClasses" />
-          </AssociationSet>
           <AssociationSet Name="FK_dbo_SchoolClasses_dbo_Teachers_TeId" Association="Self.FK_dbo_SchoolClasses_dbo_Teachers_TeId">
             <End Role="Teachers" EntitySet="Teachers" />
             <End Role="SchoolClasses" EntitySet="SchoolClasses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Students_dbo_SchoolClasses_SCId" Association="Self.FK_dbo_Students_dbo_SchoolClasses_SCId">
+            <End Role="SchoolClasses" EntitySet="SchoolClasses" />
+            <End Role="Students" EntitySet="Students" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_Timetables_dbo_SchoolClasses_TtId" Association="Self.FK_dbo_Timetables_dbo_SchoolClasses_TtId">
             <End Role="SchoolClasses" EntitySet="SchoolClasses" />
@@ -224,7 +224,6 @@
                 <ScalarProperty Name="SCId" ColumnName="SCId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="TeId" ColumnName="TeId" />
-                <ScalarProperty Name="StId" ColumnName="StId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -236,6 +235,7 @@
                 <ScalarProperty Name="FName" ColumnName="FName" />
                 <ScalarProperty Name="SName" ColumnName="SName" />
                 <ScalarProperty Name="PassWD" ColumnName="PassWD" />
+                <ScalarProperty Name="SCId" ColumnName="SCId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

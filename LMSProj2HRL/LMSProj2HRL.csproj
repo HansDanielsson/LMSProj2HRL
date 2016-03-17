@@ -168,32 +168,32 @@
     <Compile Include="Controllers\TeachersController.cs" />
     <Compile Include="Controllers\TimetablesController.cs" />
     <Compile Include="DataAccessLayer\ItemContext.cs" />
-    <Compile Include="DbSchema\ModelSchema.Context.cs">
+    <Compile Include="DbSchema\DbSchema2.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelSchema.Context.tt</DependentUpon>
+      <DependentUpon>DbSchema2.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DbSchema\ModelSchema.cs">
+    <Compile Include="DbSchema\DbSchema2.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelSchema.tt</DependentUpon>
+      <DependentUpon>DbSchema2.tt</DependentUpon>
     </Compile>
-    <Compile Include="DbSchema\ModelSchema.Designer.cs">
+    <Compile Include="DbSchema\DbSchema2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModelSchema.edmx</DependentUpon>
+      <DependentUpon>DbSchema2.edmx</DependentUpon>
     </Compile>
     <Compile Include="DbSchema\SchoolClasses.cs">
-      <DependentUpon>ModelSchema.tt</DependentUpon>
+      <DependentUpon>DbSchema2.tt</DependentUpon>
     </Compile>
     <Compile Include="DbSchema\Students.cs">
-      <DependentUpon>ModelSchema.tt</DependentUpon>
+      <DependentUpon>DbSchema2.tt</DependentUpon>
     </Compile>
     <Compile Include="DbSchema\Teachers.cs">
-      <DependentUpon>ModelSchema.tt</DependentUpon>
+      <DependentUpon>DbSchema2.tt</DependentUpon>
     </Compile>
     <Compile Include="DbSchema\Timetables.cs">
-      <DependentUpon>ModelSchema.tt</DependentUpon>
+      <DependentUpon>DbSchema2.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -222,22 +222,22 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="DbSchema\ModelSchema.edmx">
+    <EntityDeploy Include="DbSchema\DbSchema2.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModelSchema.Designer.cs</LastGenOutput>
+      <LastGenOutput>DbSchema2.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="DbSchema\ModelSchema.Context.tt">
+    <Content Include="DbSchema\DbSchema2.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelSchema.edmx</DependentUpon>
-      <LastGenOutput>ModelSchema.Context.cs</LastGenOutput>
+      <DependentUpon>DbSchema2.edmx</DependentUpon>
+      <LastGenOutput>DbSchema2.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="DbSchema\ModelSchema.edmx.diagram">
-      <DependentUpon>ModelSchema.edmx</DependentUpon>
+    <Content Include="DbSchema\DbSchema2.edmx.diagram">
+      <DependentUpon>DbSchema2.edmx</DependentUpon>
     </Content>
-    <Content Include="DbSchema\ModelSchema.tt">
+    <Content Include="DbSchema\DbSchema2.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModelSchema.edmx</DependentUpon>
-      <LastGenOutput>ModelSchema.cs</LastGenOutput>
+      <DependentUpon>DbSchema2.edmx</DependentUpon>
+      <LastGenOutput>DbSchema2.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -291,6 +291,11 @@
     <Content Include="Views\Teachers\Details.cshtml" />
     <Content Include="Views\Teachers\Edit.cshtml" />
     <Content Include="Views\Teachers\Index.cshtml" />
+    <Content Include="Views\Timetables\Create.cshtml" />
+    <Content Include="Views\Timetables\Delete.cshtml" />
+    <Content Include="Views\Timetables\Details.cshtml" />
+    <Content Include="Views\Timetables\Edit.cshtml" />
+    <Content Include="Views\Timetables\Index.cshtml" />
     <Content Include="Views\Students\Create.cshtml" />
     <Content Include="Views\Students\Delete.cshtml" />
     <Content Include="Views\Students\Details.cshtml" />
@@ -301,11 +306,6 @@
     <Content Include="Views\SchoolClasses\Details.cshtml" />
     <Content Include="Views\SchoolClasses\Edit.cshtml" />
     <Content Include="Views\SchoolClasses\Index.cshtml" />
-    <Content Include="Views\Timetables\Create.cshtml" />
-    <Content Include="Views\Timetables\Delete.cshtml" />
-    <Content Include="Views\Timetables\Details.cshtml" />
-    <Content Include="Views\Timetables\Edit.cshtml" />
-    <Content Include="Views\Timetables\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

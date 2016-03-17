@@ -14,13 +14,19 @@ namespace LMSProj2HRL.DbSchema
     
     public partial class SchoolClasses
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SchoolClasses()
+        {
+            this.Students = new HashSet<Students>();
+        }
+    
         public int SCId { get; set; }
         public string Name { get; set; }
         public int TeId { get; set; }
-        public int StId { get; set; }
     
-        public virtual Students Students { get; set; }
         public virtual Teachers Teachers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Students> Students { get; set; }
         public virtual Timetables Timetables { get; set; }
     }
 }
