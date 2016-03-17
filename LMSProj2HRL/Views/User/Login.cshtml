@@ -1,0 +1,35 @@
+﻿@model LMSProj2HRL.Models.Teacher
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "Inloggning inte ok, försök igen.");
+    <div>
+        <fieldset>
+            <legend>LoginId</legend>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.LoginId)
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.LoginId)
+                @Html.ValidationMessageFor(model => model.LoginId)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.PassWD)
+            </div>
+            <div class="editor-field">
+                @Html.PasswordFor(model => model.PassWD)
+                @Html.ValidationMessageFor(model => model.PassWD)
+            </div>
+            @*<div class="editor-label">
+                @Html.CheckBoxFor(model => model.PassWD)
+                @Html.LabelFor(model => model.PassWD)
+            </div>*@
+            <input type="submit" value="Loggain" />
+        </fieldset>
+    </div>
+}
