@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<LMSProj2HRL.Models.Teacher>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lärare";
 }
 
-<h2>Index</h2>
+<h2>Lärare</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Registrera ny", "Create")
 </p>
 <table class="table">
     <tr>
@@ -21,7 +21,7 @@
             @Html.DisplayNameFor(model => model.SName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PassWD)
+@*            @Html.DisplayNameFor(model => model.PassWD)*@
         </th>
         <th></th>
     </tr>
@@ -38,7 +38,7 @@
             @Html.DisplayFor(modelItem => item.SName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PassWD)
+            @*@Html.DisplayFor(modelItem => item.PassWD)*@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.TeId }) |
