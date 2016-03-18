@@ -32,9 +32,9 @@ namespace LMSProj2HRL.Models
         /// <param name="_username">User name</param>
         /// <param name="_password">User password</param>
         /// <returns>True if user exist and password is correct</returns>
-        public bool IsValid(string _username, string _password)
-        {
-            return true;
-        }
+        //public bool IsValid(string _username, string _password)
+        //{
+        //    return true;
+        //}
     }
 }

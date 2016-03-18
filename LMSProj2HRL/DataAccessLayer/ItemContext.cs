@@ -14,5 +14,6 @@ namespace LMSProj2HRL.DataAccessLayer
         public DbSet<SchoolClass> SchoolClass { get; set; }
         public DbSet<Student> Student { get; set; }
         public DbSet<Timetable> Timetable { get; set; }
+
     }
 }

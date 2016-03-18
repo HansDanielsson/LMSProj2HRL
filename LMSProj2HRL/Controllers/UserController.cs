@@ -26,7 +26,7 @@ namespace LMSProj2HRL.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (user.IsValid(user.LoginId, user.PassWD))
+                if (Helpers.IsValid.CheckIsValid(user.LoginId, user.PassWD))
                 {
                     FormsAuthentication.SetAuthCookie(user.LoginId, true);
                     return RedirectToAction("Index", "Home");

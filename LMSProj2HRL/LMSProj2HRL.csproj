@@ -200,6 +200,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\IsValid.cs" />
     <Compile Include="Helpers\Sha1.cs" />
     <Compile Include="Migrations\201603161417051_Initial.cs" />
     <Compile Include="Migrations\201603161417051_Initial.Designer.cs">
