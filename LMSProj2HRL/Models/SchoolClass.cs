@@ -17,6 +17,7 @@ namespace LMSProj2HRL.Models
         public string Name { get; set; }
 
         #region Teacher Foreign Key
+        //[DisplayName("Lärare")]
         public int TeId { get; set; }
 
         [ForeignKey("TeId")]

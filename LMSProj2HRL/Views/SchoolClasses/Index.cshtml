@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<LMSProj2HRL.Models.SchoolClass>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Skolklass";
 }
 
-<h2>Index</h2>
+<h2>Skolklass</h2>
 
 <p>
-    @Html.ActionLink("Skapa", "Create")
+    @Html.ActionLink("Registrera ny", "Create")
 </p>
 <table class="table">
     <tr>
@@ -37,7 +37,7 @@
         <td>
             @Html.ActionLink("Ändra", "Edit", new { id=item.SCId }) |
             @Html.ActionLink("Detaljer", "Details", new { id=item.SCId }) |
-            @Html.ActionLink("Ta Bort", "Delete", new { id=item.SCId })
+            @Html.ActionLink("Ta bort", "Delete", new { id=item.SCId })
         </td>
     </tr>
 }

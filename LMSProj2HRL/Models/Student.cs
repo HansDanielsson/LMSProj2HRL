@@ -28,6 +28,7 @@ namespace LMSProj2HRL.Models
         public string PassWD { get; set; }
 
         #region SchoolClass Foreign Key
+        //[DisplayName("Klass Id")]
         public int SCId { get; set; }
 
         [ForeignKey("SCId")]
