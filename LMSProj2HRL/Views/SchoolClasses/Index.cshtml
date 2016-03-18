@@ -29,7 +29,13 @@
             @Html.DisplayFor(modelItem => item.Teacher.LoginId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Timetable.Lesson1)
+            @*@Html.DisplayFor(modelItem => item.Timetable.Lesson1)*@
+            @{
+                if (item.Timetable != null)
+                {
+                    @Html.ActionLink("Schema", "Index", "Timetables", null, new { id = item.Timetable.TtId })
+                }
+            }
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
