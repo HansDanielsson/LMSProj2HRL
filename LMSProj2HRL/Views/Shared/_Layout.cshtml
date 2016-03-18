@@ -28,7 +28,7 @@
                     @if (Request.IsAuthenticated)
                     {
                         <li>
-                            @Html.ActionLink("Loggaut", "Logout", "User")
+                            @Html.ActionLink("Logga ut", "Logout", "User")
                         </li>
                         <li>@Html.ActionLink("Lärare", "Index", "Teachers")</li>
                         <li>@Html.ActionLink("Studenter", "Index", "Students")</li>
@@ -38,7 +38,7 @@
                     else
                     {
                         <li>
-                            @Html.ActionLink("Loggain", "Login", "User")
+                            @Html.ActionLink("Logga in", "Login", "User")
                         </li>
                     }
                 </ul>
