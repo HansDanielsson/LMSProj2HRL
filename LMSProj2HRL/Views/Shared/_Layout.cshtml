@@ -28,7 +28,6 @@
                     @if (Request.IsAuthenticated)
                     {
                         <li>
-                            <strong>@Html.Encode("Hejsan")</strong>
                             @Html.ActionLink("Loggaut", "Logout", "User")
                         </li>
                         <li>@Html.ActionLink("Lärare", "Index", "Teachers")</li>
