@@ -53,6 +53,7 @@ namespace LMSProj2HRL.Controllers
         {
             if (ModelState.IsValid)
             {
+                student.PassWD = Helpers.Sha1.Encode(student.PassWD);
                 db.Student.Add(student);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -87,6 +88,7 @@ namespace LMSProj2HRL.Controllers
         {
             if (ModelState.IsValid)
             {
+                student.PassWD = Helpers.Sha1.Encode(student.PassWD);
                 db.Entry(student).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
