@@ -9,9 +9,9 @@
 <p>
     @if ((int)System.Web.HttpContext.Current.Session["UserLMS"] == 1)
     {
-        @Html.ActionLink("Registrera ny", "Create")
+    @Html.ActionLink("Registrera ny", "Create")
     }
-    
+
 </p>
 <table class="table">
     <tr>
@@ -27,29 +27,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Teacher.LoginId)
-        </td>
-        <td>
-            @*@Html.DisplayFor(modelItem => item.Timetable.Lesson1)*@
-            @{
-                if (item.Timetable != null)
-                {
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Teacher.LoginId)
+            </td>
+            <td>
+                @if (item.Timetable != null) {
                     @Html.ActionLink("Schema", "Index", "Timetables", null, new { id = item.Timetable.TtId })
                 }
-            }
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Ändra", "Edit", new { id=item.SCId }) |
-            @Html.ActionLink("Detaljer", "Details", new { id=item.SCId }) |
-            @Html.ActionLink("Ta bort", "Delete", new { id=item.SCId })
-        </td>
-    </tr>
-}
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
 
+            @if(((int)System.Web.HttpContext.Current.Session["UserLMS"]) == 1) {
+                <td>
+                    @Html.ActionLink("Ändra", "Edit", new { id=item.SCId }) |
+                    @Html.ActionLink("Detaljer", "Details", new { id=item.SCId }) |
+                    @Html.ActionLink("Ta bort", "Delete", new { id=item.SCId })
+                <td>
+                    }
+            </tr>
+    }
 </table>
