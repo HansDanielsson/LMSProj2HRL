@@ -30,10 +30,18 @@
                         <li>
                             @Html.ActionLink("Logga ut", "Logout", "User")
                         </li>
-                        if (((int)System.Web.HttpContext.Current.Session["UserLMS"]) == 1)
+                        try
                         {
-                            <li>@Html.ActionLink("Lärare", "Index", "Teachers")</li>
+                            if (((int)System.Web.HttpContext.Current.Session["UserLMS"]) == 1)
+                            {
+                                <li>@Html.ActionLink("Lärare", "Index", "Teachers")</li>
+                            }
                         }
+                        catch (Exception e)
+                        {
+
+                        }
+
                         <li>@Html.ActionLink("Studenter", "Index", "Students")</li>
                         <li>@Html.ActionLink("Klass", "Index", "SchoolClasses")</li>
                         <li>@Html.ActionLink("Schema", "Index", "Timetables")</li>
