@@ -6,9 +6,13 @@
 
 <h2>Schema</h2>
 
-<p>
-    @Html.ActionLink("Registrera ny", "Create")
-</p>
+@{
+    if ((int)System.Web.HttpContext.Current.Session["UserLMS"] == 1)
+    {
+        @Html.ActionLink("Registrera ny", "Create")
+    }
+}
+
 <table class="table">
     <tr>
         <th>
@@ -52,11 +56,16 @@
         <td>
             @Html.DisplayFor(modelItem => item.Lesson4)
         </td>
-        <td>
-            @Html.ActionLink("Ändra", "Edit", new { id=item.TtId }) |
-            @Html.ActionLink("Detaljer", "Details", new { id=item.TtId }) |
-            @Html.ActionLink("Ta Bort", "Delete", new { id=item.TtId })
-        </td>
+        @{
+            if ((int)System.Web.HttpContext.Current.Session["UserLMS"] == 1)
+            { 
+                <td>
+                    @Html.ActionLink("Ändra", "Edit", new { id=item.TtId }) |
+                    @Html.ActionLink("Detaljer", "Details", new { id=item.TtId }) |
+                    @Html.ActionLink("Ta Bort", "Delete", new { id=item.TtId })
+                </td>
+            }
+        }
     </tr>
 }
 
