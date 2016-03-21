@@ -21,7 +21,7 @@ namespace LMSProj2HRL.Helpers
             using (var cn = new SqlConnection(@"Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-LMSProj2HRL-20160316022928.mdf;Initial Catalog=aspnet-LMSProj2HRL-20160316022928;Integrated Security=True"))
 
                 {
-                string _sql = @"SELECT [LoginId] FROM [dbo].[Teachers]" +
+                    string _sql = @"SELECT [LoginId] FROM [dbo].[Teachers] " +
                        @"WHERE [LoginId] = @u AND [PassWD] = @p";
                 var cmd = new SqlCommand(_sql, cn);
                 cmd.Parameters
