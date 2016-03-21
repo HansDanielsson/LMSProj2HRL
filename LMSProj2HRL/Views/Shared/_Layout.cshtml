@@ -30,7 +30,7 @@
                         <li>
                             @Html.ActionLink("Logga ut", "Logout", "User")
                         </li>
-                        @if (true)
+                        if (((int)System.Web.HttpContext.Current.Session["UserLMS"]) == 1)
                         {
                             <li>@Html.ActionLink("Lärare", "Index", "Teachers")</li>
                         }

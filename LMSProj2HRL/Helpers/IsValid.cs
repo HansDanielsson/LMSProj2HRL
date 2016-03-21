@@ -32,6 +32,7 @@ namespace LMSProj2HRL.Helpers
                 var reader1 = cmd1.ExecuteReader();
                 if (reader1.HasRows)
                 {
+                    HttpContext.Current.Session["UserLMS"] = 1;
                     // Sätt global variabel till Teachers status
                     reader1.Dispose();
                     cmd1.Dispose();
@@ -52,6 +53,7 @@ namespace LMSProj2HRL.Helpers
                     var reader2 = cmd2.ExecuteReader();
                     if (reader2.HasRows)
                     {
+                        HttpContext.Current.Session["UserLMS"] = 2;
                         // Sätt global variabel till Students status
                         reader2.Dispose();
                         cmd2.Dispose();
