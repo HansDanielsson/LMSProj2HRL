@@ -42,7 +42,7 @@ namespace LMSProj2HRL.Controllers
         {
             ViewBag.TeId = new SelectList(db.Teacher, "TeId", "LoginId");
             ViewBag.SCId = new SelectList(db.Timetable, "TtId", "Lesson1");
-            return View();
+			return View();
         }
 
         // POST: SchoolClasses/Create
@@ -54,6 +54,19 @@ namespace LMSProj2HRL.Controllers
         {
             if (ModelState.IsValid)
             {
+				var result = from v in db.SchoolClass
+							 where v.Name == schoolClass.Name
+							 select v;
+				int xcount = 0;
+				foreach (SchoolClass v in result)
+				{
+					xcount++;
+					if (xcount > 0)
+					{
+						return RedirectToAction("Message"); //ej dubletter
+					}
+				}		
+
                 db.SchoolClass.Add(schoolClass);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -63,6 +76,12 @@ namespace LMSProj2HRL.Controllers
             ViewBag.SCId = new SelectList(db.Timetable, "TtId", "Lesson1", schoolClass.SCId);
             return View(schoolClass);
         }
+
+		public ActionResult Message()
+		{
+			ViewBag.Message = "Det går ej att ha dubbletter!";
+			return PartialView();
+		}
 
         // GET: SchoolClasses/Edit/5
         public ActionResult Edit(int? id)

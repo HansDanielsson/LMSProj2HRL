@@ -313,7 +313,7 @@
     <Content Include="Views\SchoolClasses\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
-    <Content Include="Views\Timetables\Message.cshtml" />
+    <Content Include="Views\Shared\Message.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
