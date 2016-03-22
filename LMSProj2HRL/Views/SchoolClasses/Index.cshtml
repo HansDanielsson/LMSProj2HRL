@@ -36,7 +36,7 @@
             <td>
                 @if (item.Timetable != null)
                 {
-                    @Html.ActionLink("Schema", "Index", "Timetables", null, new { id = item.Timetable.TtId })
+                    @Html.ActionLink("Schema", "Details", "Timetables", new { id = item.Timetable.TtId }, null)
                 }
             </td>
             <td>
