@@ -54,13 +54,26 @@ namespace LMSProj2HRL.Controllers
             if (ModelState.IsValid)
             {
                 db.Timetable.Add(timetable);
-                db.SaveChanges();
+				try
+				{
+					db.SaveChanges();
+				}
+				catch (Exception e)
+				{					
+					return RedirectToAction("Message");	//inga dubbletter
+				}
                 return RedirectToAction("Index");
             }
 
             ViewBag.TtId = new SelectList(db.SchoolClass, "SCId", "Name", timetable.TtId);
             return View(timetable);
         }
+
+		public ActionResult Message()
+		{
+			ViewBag.Message = "Det går ej att ha dubbletter!";
+			return PartialView();
+		}
 
         // GET: Timetables/Edit/5
         public ActionResult Edit(int? id)
