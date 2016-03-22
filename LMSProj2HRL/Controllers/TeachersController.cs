@@ -51,14 +51,31 @@ namespace LMSProj2HRL.Controllers
         {
             if (ModelState.IsValid)
             {
+				var result = from v in db.Teacher
+							 where v.LoginId == teacher.LoginId
+							 select v;
+				int xcount = 0;
+				foreach (Teacher v in result)
+				{
+					xcount++;
+					if (xcount > 0)
+					{
+						return RedirectToAction("Message"); //ej dubletter
+					}
+				}		
                 teacher.PassWD = Helpers.Sha1.Encode(teacher.PassWD);
                 db.Teacher.Add(teacher);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(teacher);
         }
+
+		public ActionResult Message()
+		{
+			ViewBag.Message = "Det går ej att ha dubbletter!";
+			return PartialView();
+		}
 
         // GET: Teachers/Edit/5
         public ActionResult Edit(int? id)

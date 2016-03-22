@@ -53,6 +53,18 @@ namespace LMSProj2HRL.Controllers
         {
             if (ModelState.IsValid)
             {
+				var result = from v in db.Student
+							 where v.LoginId == student.LoginId
+							 select v;
+				int xcount = 0;
+				foreach (Student v in result)
+				{
+					xcount++;
+					if (xcount > 0)
+					{
+						return RedirectToAction("Message"); //ej dubletter
+					}
+				}		
                 student.PassWD = Helpers.Sha1.Encode(student.PassWD);
                 db.Student.Add(student);
                 db.SaveChanges();
@@ -62,6 +74,12 @@ namespace LMSProj2HRL.Controllers
             ViewBag.SCId = new SelectList(db.SchoolClass, "SCId", "Name", student.SCId);
             return View(student);
         }
+
+		public ActionResult Message()
+		{
+			ViewBag.Message = "Det går ej att ha dubbletter!";
+			return PartialView();
+		}
 
         // GET: Students/Edit/5
         public ActionResult Edit(int? id)
