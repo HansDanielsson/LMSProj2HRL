@@ -23,6 +23,8 @@ namespace LMSProj2HRL.Models
         public int TtId { get; set; }
 
         [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DisplayName("Datum")]
         public DateTime DateTime { get; set; }
 
