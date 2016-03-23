@@ -22,11 +22,10 @@
 </ul>
 
 <div>
-    @using (Html.BeginForm("Index", "Upload", FormMethod.Post, new { encrype = "multipart/form-data" }))
+    @using (Html.BeginForm("Index", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
-        <input type="file" name="ValFilen" id="ValFilen" value="Välj fil" />
-        <input type="submit" value="Ladda up" />
-        @*<button type="submit">Ladda up</button>*@
+        <input type="file" name="UpFile" id="UpFile" value="Välj fil" />
+        <button type="submit">Ladda up</button>
         <br />
         <br />
         @ViewBag.Message
