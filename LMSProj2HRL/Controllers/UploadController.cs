@@ -19,13 +19,13 @@ namespace LMSProj2HRL.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(HttpPostedFileBase file)
+        public ActionResult Index(HttpPostedFileBase ValFilen)
         {
-            if (file != null && file.ContentLength > 0)
+            if (ValFilen != null && ValFilen.ContentLength > 0)
                 try
                 {
-                    string path = Path.Combine(Server.MapPath("~/FileHandler"), Path.GetFileName(file.FileName));
-                    file.SaveAs(path);
+                    string path = Path.Combine(Server.MapPath("~/FileHandler"), Path.GetFileName(ValFilen.FileName));
+                    ValFilen.SaveAs(path);
                     ViewBag.Message = "Filen sparad";
 
                 }
