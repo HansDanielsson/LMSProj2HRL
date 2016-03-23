@@ -1,0 +1,27 @@
+﻿@model IEnumerable<string>
+@{
+    ViewBag.Title = "Uploads";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Files</h2>
+
+<ul>
+    @foreach (var fName in Model)
+    {
+        var name = fName;
+        var link = @Url.Content("~/FileHandler/") + name.Replace(" ", "%20");
+        
+        <li>
+            <a href="@link">@name</a>
+        </li>
+    }
+</ul>
+
+<div>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { encrype = "multipart/form-data"}))
+    {
+        <input type="file" name="file" id="file" value="Välj fil" />
+        <button type="submit">Ladda up</button>
+    }
+</div>
