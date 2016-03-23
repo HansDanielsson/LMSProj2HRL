@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Files</h2>
+<h2>Filer</h2>
 
 <ul>
     @foreach (var fName in Model)
@@ -19,9 +19,13 @@
 </ul>
 
 <div>
-    @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { encrype = "multipart/form-data"}))
+    @using (Html.BeginForm("Index", "Upload", FormMethod.Post, new { encrype = "multipart/form-data"}))
     {
+        <label for="file">Filnamn:</label>
         <input type="file" name="file" id="file" value="Välj fil" />
         <button type="submit">Ladda up</button>
+        <br />
+        <br />
+        @ViewBag.Message
     }
 </div>
