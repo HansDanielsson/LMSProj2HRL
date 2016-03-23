@@ -7,19 +7,22 @@
 <h2>Filer</h2>
 
 <ul>
-    @foreach (var fName in Model)
+    @if (Model != null)
     {
-        var name = fName;
-        var link = @Url.Content("~/FileHandler/") + name.Replace(" ", "%20");
-        
-        <li>
-            <a href="@link">@name</a>
-        </li>
+        foreach (var fName in Model)
+        {
+            var name = fName;
+            var link = @Url.Content("~/FileHandler/") + name.Replace(" ", "%20");
+
+            <li>
+                <a href="@link">@name</a>
+            </li>
+        }
     }
 </ul>
 
 <div>
-    @using (Html.BeginForm("Index", "Upload", FormMethod.Post, new { encrype = "multipart/form-data"}))
+    @using (Html.BeginForm("Index", "Upload", FormMethod.Post, new { encrype = "multipart/form-data" }))
     {
         <label for="file">Filnamn:</label>
         <input type="file" name="file" id="file" value="Välj fil" />
