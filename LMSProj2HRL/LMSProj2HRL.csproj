@@ -318,7 +318,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="FileHandler\Shared\" />
+    <Folder Include="FileHandler\Klass1\" />
+    <Folder Include="FileHandler\Klass2\" />
+    <Folder Include="FileHandler\Klass3\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
