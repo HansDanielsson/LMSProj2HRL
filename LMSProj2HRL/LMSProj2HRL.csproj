@@ -222,6 +222,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="FileHandler\Na1B\Redovis-Kalle-Student.txt" />
+    <Content Include="FileHandler\Shared\GemensamFilAllaSer.txt" />
+    <Content Include="FileHandler\Shared\Na1B\GemensamKlassFil.txt" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -318,9 +321,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="FileHandler\Klass1\" />
-    <Folder Include="FileHandler\Klass2\" />
-    <Folder Include="FileHandler\Klass3\Shared\" />
+    <Folder Include="FileHandler\Shared\Te1A\" />
+    <Folder Include="FileHandler\Shared\Te2B\" />
+    <Folder Include="FileHandler\Te1A\" />
+    <Folder Include="FileHandler\Te2B\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
