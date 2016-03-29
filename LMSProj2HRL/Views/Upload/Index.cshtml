@@ -1,12 +1,12 @@
-﻿@model IEnumerable<string>
+﻿@* @model IEnumerable<string> *@
 @{
     ViewBag.Title = "Uploads";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Filer</h2>
+<h2>Lämna in inlämningsuppgifter</h2>
 
-<ul>
+@*<ul>
     @if (Model != null)
     {
         foreach (var fName in Model)
@@ -19,7 +19,7 @@
             </li>
         }
     }
-</ul>
+</ul>*@
 
 <div>
     @using (Html.BeginForm("Index", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))

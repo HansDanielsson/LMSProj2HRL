@@ -12,12 +12,13 @@ namespace LMSProj2HRL.Controllers
         // GET: Upload
         public ActionResult Index()
         {
-            var path = Server.MapPath("~/FileHandler/");
+    /*        var path = Server.MapPath("~/FileHandler/");
             var dir = new DirectoryInfo(path);
             var files = dir.EnumerateFiles().Select(f => f.Name);
-            return View(files);
+            return View(files);*/
+			return View();
         }
-
+	
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase UpFile)
         {
