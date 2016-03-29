@@ -12,9 +12,11 @@ namespace LMSProj2HRL.Controllers
         // GET: Common
         public ActionResult Index()
         {
-            var path = Server.MapPath("~/FileHandler/Shared/");
+            string path = Server.MapPath("~/FileHandler/Shared/");
             var dir = new DirectoryInfo(path);
             var files = dir.EnumerateFiles().Select(f => f.Name);
+
+            path = Server.MapPath("~/FileHandler/Shared/" + );
             return View(files);
         }
 
