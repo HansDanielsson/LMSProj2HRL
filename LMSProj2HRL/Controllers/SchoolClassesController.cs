@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -42,7 +43,7 @@ namespace LMSProj2HRL.Controllers
         {
             ViewBag.TeId = new SelectList(db.Teacher, "TeId", "LoginId");
             ViewBag.SCId = new SelectList(db.Timetable, "TtId", "Lesson1");
-			return View();
+            return View();
         }
 
         // POST: SchoolClasses/Create
@@ -54,18 +55,29 @@ namespace LMSProj2HRL.Controllers
         {
             if (ModelState.IsValid)
             {
-				var result = from v in db.SchoolClass
-							 where v.Name == schoolClass.Name
-							 select v;
-				int xcount = 0;
-				foreach (SchoolClass v in result)
-				{
-					xcount++;
-					if (xcount > 0)
-					{
-						return RedirectToAction("Message"); //ej dubletter
-					}
-				}		
+                var result = from v in db.SchoolClass
+                             where v.Name == schoolClass.Name
+                             select v;
+                int xcount = 0;
+                foreach (SchoolClass v in result)
+                {
+                    xcount++;
+                    if (xcount > 0)
+                    {
+                        return RedirectToAction("Message"); //ej dubletter
+                    }
+                }
+                string path = Server.MapPath("~/FileHandler/" + schoolClass.Name);
+                if (!Directory.Exists(path))
+                {
+                    DirectoryInfo di = Directory.CreateDirectory(path);
+
+                    path = Server.MapPath("~/FileHandler/Shared/" + schoolClass.Name);
+                    if (!Directory.Exists(path))
+                    {
+                        di = Directory.CreateDirectory(path);
+                    }
+                }
 
                 db.SchoolClass.Add(schoolClass);
                 db.SaveChanges();
@@ -77,11 +89,11 @@ namespace LMSProj2HRL.Controllers
             return View(schoolClass);
         }
 
-		public ActionResult Message()
-		{
-			ViewBag.Message = "Det går ej att ha dubbletter!";
-			return PartialView();
-		}
+        public ActionResult Message()
+        {
+            ViewBag.Message = "Det går ej att ha dubbletter!";
+            return PartialView();
+        }
 
         // GET: SchoolClasses/Edit/5
         public ActionResult Edit(int? id)
@@ -141,6 +153,18 @@ namespace LMSProj2HRL.Controllers
             SchoolClass schoolClass = db.SchoolClass.Find(id);
             db.SchoolClass.Remove(schoolClass);
             db.SaveChanges();
+
+            string path = Server.MapPath("~/FileHandler/" + schoolClass.Name);
+            if (Directory.Exists(path))
+            {
+                Directory.Delete(path,true);
+            }
+
+            path = Server.MapPath("~/FileHandler/Shared/" + schoolClass.Name);
+            if (Directory.Exists(path))
+            {
+                Directory.Delete(path,true);
+            }
             return RedirectToAction("Index");
         }
 
