@@ -27,8 +27,8 @@ namespace LMSProj2HRL.Controllers
             path = Server.MapPath("~/FileHandler/Shared/" + ClassName.ElementAt(0));
             dir = new DirectoryInfo(path);
             var files2 = dir.EnumerateFiles().Select(f => f.Name);
-
-            for (int i = files2.Count(); i >= 0; i--)
+            
+            for (int i = files2.Count()-1; i >= 0; i--)
             {
                 //files2.ElementAt(i) = ClassName.ElementAt(0) + "/" + files2.ElementAt(i);
             }
