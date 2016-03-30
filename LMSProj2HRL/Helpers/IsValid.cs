@@ -31,7 +31,8 @@ namespace LMSProj2HRL.Helpers
             }
             else
             {
-                var Student = from s in db.Student where (s.LoginId == _loginId) && (s.PassWD == _passWD) select s.SCId;
+                //var Student = from s in db.Student where (s.LoginId == _loginId) && (s.PassWD == _passWD) select s.SCId;
+                IEnumerable<int> Student = from s in db.Student where (s.LoginId == _loginId) && (s.PassWD == _passWD) select s.SCId;
                 if (Student.Count() == 1)
                 {
                     // Sätt global variabel till Students status
