@@ -12,10 +12,6 @@ namespace LMSProj2HRL.Controllers
         // GET: Upload
         public ActionResult Index()
         {
-    /*        var path = Server.MapPath("~/FileHandler/");
-            var dir = new DirectoryInfo(path);
-            var files = dir.EnumerateFiles().Select(f => f.Name);
-            return View(files);*/
 			return View();
         }
 	
@@ -27,12 +23,12 @@ namespace LMSProj2HRL.Controllers
                 {
                     string path = Path.Combine(Server.MapPath("~/FileHandler"), Path.GetFileName(UpFile.FileName));
                     UpFile.SaveAs(path);
-                    ViewBag.Message = "Filen sparad";
+					ViewBag.Message = "Filen '" + UpFile.FileName + "' sparad";
 
                 }
                 catch (Exception e)
                 {
-                    ViewBag.Message = "Error:" + e.Message.ToString();
+					ViewBag.Message = "Error:" + e.Message.ToString() + "Filen '" + UpFile.FileName + "' har ej sparats";
                 }
             else
             {
