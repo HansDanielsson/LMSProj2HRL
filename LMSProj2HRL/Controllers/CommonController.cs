@@ -4,11 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using LMSProj2HRL.DataAccessLayer;
 
 namespace LMSProj2HRL.Controllers
 {
     public class CommonController : Controller
     {
+        private ItemContext db = new ItemContext();
         // GET: Common
         public ActionResult Index()
         {
@@ -16,7 +18,12 @@ namespace LMSProj2HRL.Controllers
             var dir = new DirectoryInfo(path);
             var files = dir.EnumerateFiles().Select(f => f.Name);
 
-            path = Server.MapPath("~/FileHandler/Shared/" + );
+            // SELECT Name From SchoolClasses c, Students s WHERE s.LoginId = ? AND s.SCId = c.SCId
+            var ClassName = (from c in db.SchoolClass
+                            where c.SCId.ToString() == System.Web.HttpContext.Current.Session["SchoolClass"]
+                            select c.Name).SingleOrDefault();
+
+            path = Server.MapPath("~/FileHandler/Shared/" + ClassName);
             return View(files);
         }
 

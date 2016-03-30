@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using LMSProj2HRL.DataAccessLayer;
 namespace LMSProj2HRL.Helpers
 {
     public class IsValid
@@ -18,55 +19,30 @@ namespace LMSProj2HRL.Helpers
         /// <returns>True if user exist and password is correct</returns>
         public static bool CheckIsValid(string _loginId, string _passWD)
         {
-            using (var cn = new SqlConnection(@"Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-LMSProj2HRL-20160316022928.mdf;Initial Catalog=aspnet-LMSProj2HRL-20160316022928;Integrated Security=True"))
+            ItemContext db = new ItemContext();
+            _passWD = Helpers.Sha1.Encode(_passWD);
+            var Teacher = from t in db.Teacher where (t.LoginId == _loginId) && (t.PassWD == _passWD) select t;
+            if (Teacher.Count() == 1)
             {
-                string _sql1 = @"SELECT LoginId FROM Teachers WHERE LoginId = @u AND PassWD = @p";
-                var cmd1 = new SqlCommand(_sql1, cn);
-                cmd1.Parameters
-                    .Add(new SqlParameter("@u", SqlDbType.NVarChar))
-                    .Value = _loginId;
-                cmd1.Parameters
-                    .Add(new SqlParameter("@p", SqlDbType.NVarChar))
-                    .Value = Sha1.Encode(_passWD);
-                cn.Open();
-                var reader1 = cmd1.ExecuteReader();
-                if (reader1.HasRows)
+                HttpContext.Current.Session["UserLMS"] = 1;
+                HttpContext.Current.Session["UserName"] = _loginId;
+                // Sätt global variabel till Teachers status
+                return true;
+            }
+            else
+            {
+                var Student = from s in db.Student where (s.LoginId == _loginId) && (s.PassWD == _passWD) select s;
+                if (Student.Count() == 1)
                 {
-                    HttpContext.Current.Session["UserLMS"] = 1;
+                    HttpContext.Current.Session["UserLMS"] = 2;
                     HttpContext.Current.Session["UserName"] = _loginId;
-                    // Sätt global variabel till Teachers status
-                    reader1.Dispose();
-                    cmd1.Dispose();
+                    HttpContext.Current.Session["SchoolClass"] = Student;
+                    // Sätt global variabel till Students status
                     return true;
                 }
                 else
                 {
-                    cn.Close();
-                    string _sql2 = @"SELECT LoginId FROM Students WHERE LoginId = @u AND PassWD = @p";
-                    var cmd2 = new SqlCommand(_sql2, cn);
-                    cmd2.Parameters
-                        .Add(new SqlParameter("@u", SqlDbType.NVarChar))
-                        .Value = _loginId;
-                    cmd2.Parameters
-                        .Add(new SqlParameter("@p", SqlDbType.NVarChar))
-                        .Value = Sha1.Encode(_passWD);
-                    cn.Open();
-                    var reader2 = cmd2.ExecuteReader();
-                    if (reader2.HasRows)
-                    {
-                        HttpContext.Current.Session["UserLMS"] = 2;
-                        HttpContext.Current.Session["UserName"] = _loginId;
-                        // Sätt global variabel till Students status
-                        reader2.Dispose();
-                        cmd2.Dispose();
-                        return true;
-                    }
-                    else
-                    {
-                        reader2.Dispose();
-                        cmd2.Dispose();
-                        return false;
-                    }
+                    return false;
                 }
             }
         }
