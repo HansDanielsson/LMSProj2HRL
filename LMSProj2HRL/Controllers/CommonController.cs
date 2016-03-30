@@ -19,11 +19,12 @@ namespace LMSProj2HRL.Controllers
             var files = dir.EnumerateFiles().Select(f => f.Name);
 
             // SELECT Name From SchoolClasses c, Students s WHERE s.LoginId = ? AND s.SCId = c.SCId
+            var SC = System.Web.HttpContext.Current.Session["SchoolClass"].ToString();
             var ClassName = (from c in db.SchoolClass
-                            where c.SCId.ToString() == System.Web.HttpContext.Current.Session["SchoolClass"]
-                            select c.Name).SingleOrDefault();
+                            where c.SCId.ToString() == SC
+                            select c);
 
-            path = Server.MapPath("~/FileHandler/Shared/" + ClassName);
+            path = Server.MapPath("~/FileHandler/Shared/" + ClassName.ElementAt(0).Name);
             return View(files);
         }
 
