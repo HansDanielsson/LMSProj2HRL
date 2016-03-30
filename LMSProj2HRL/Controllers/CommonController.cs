@@ -25,7 +25,15 @@ namespace LMSProj2HRL.Controllers
                             select c.Name);
 
             path = Server.MapPath("~/FileHandler/Shared/" + ClassName.ElementAt(0));
-            return View(files);
+            dir = new DirectoryInfo(path);
+            var files2 = dir.EnumerateFiles().Select(f => f.Name);
+
+            for (int i = files2.Count(); i >= 0; i--)
+            {
+                //files2.ElementAt(i) = ClassName.ElementAt(0) + "/" + files2.ElementAt(i);
+            }
+            var files3 = files.Concat(files2);
+            return View(files3);
         }
 
         [HttpPost]
