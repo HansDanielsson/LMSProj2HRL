@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace LMSProj2HRL.Controllers
 {
-    public class UploadController : Controller
+    public class UploadController : HelpersController
     {
         // GET: Upload
         public ActionResult Index()
@@ -18,22 +18,23 @@ namespace LMSProj2HRL.Controllers
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase UpFile)
         {
-            if (UpFile != null && UpFile.ContentLength > 0)
-                try
-                {
-                    string FileHandler = "~/FileHandler/" + System.Web.HttpContext.Current.Session["SchoolClass"].ToString();
-                    string path = Path.Combine(Server.MapPath(FileHandler), Path.GetFileName(UpFile.FileName));
-                    UpFile.SaveAs(path);
-					ViewBag.Message = "Filen '" + UpFile.FileName + "' sparad";
-                }
-                catch (Exception e)
-                {
-					ViewBag.Message = "Error:" + e.Message.ToString() + "Filen '" + UpFile.FileName + "' har ej sparats";
-                }
-            else
-            {
-                ViewBag.Message = "Du måste ange en fil!";
-            }
+            this.SaveFiles(System.Web.HttpContext.Current.Session["SchoolClass"].ToString(), UpFile);
+            //if (UpFile != null && UpFile.ContentLength > 0)
+            //    try
+            //    {
+            //        string FileHandler = "~/FileHandler/" + System.Web.HttpContext.Current.Session["SchoolClass"].ToString();
+            //        string path = Path.Combine(Server.MapPath(FileHandler), Path.GetFileName(UpFile.FileName));
+            //        UpFile.SaveAs(path);
+            //        ViewBag.Message = "Filen '" + UpFile.FileName + "' sparad";
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        ViewBag.Message = "Error:" + e.Message.ToString() + " Filen '" + UpFile.FileName + "' har ej sparats";
+            //    }
+            //else
+            //{
+            //    ViewBag.Message = "Du måste ange en fil!";
+            //}
             return View();
         }
     }

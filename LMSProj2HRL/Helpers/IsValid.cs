@@ -47,7 +47,7 @@ namespace LMSProj2HRL.Helpers
                     // Sätt global variabel till Students status
                     HttpContext.Current.Session["UserLMS"] = 2;
                     HttpContext.Current.Session["UserName"] = _loginId;
-                    HttpContext.Current.Session["SchoolClass"] = Student.ElementAt(0) + "/"; // Avslutas med / till katalog namnet
+                    HttpContext.Current.Session["SchoolClass"] = Student.ElementAt(0);
                     return true;
                 }
                 else

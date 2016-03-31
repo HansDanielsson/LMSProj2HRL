@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace LMSProj2HRL.Controllers
 {
-    public class CommonController : Controller
+    public class CommonController : HelpersController
     {
         private ItemContext db = new ItemContext();
         // GET: Common
@@ -24,21 +24,23 @@ namespace LMSProj2HRL.Controllers
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase UpFile)
         {
-            if (UpFile != null && UpFile.ContentLength > 0)
-                try
-                {
-                    string path = Path.Combine(Server.MapPath("~/FileHandler/Shared"), Path.GetFileName(UpFile.FileName));
-                    UpFile.SaveAs(path);
-                    ViewBag.Message = "Filen sparad";
-                }
-                catch (Exception e)
-                {
-                    ViewBag.Message = "Error:" + e.Message.ToString();
-                }
-            else
-            {
-                ViewBag.Message = "Du måste ange en fil!";
-            }
+            this.SaveFiles("Shared", UpFile);
+            //if (UpFile != null && UpFile.ContentLength > 0)
+            //    try
+            //    {
+            //        string FileHandler = "~/FileHandler/Shared";
+            //        string path = Path.Combine(Server.MapPath(FileHandler), Path.GetFileName(UpFile.FileName));
+            //        UpFile.SaveAs(path);
+            //        ViewBag.Message = "Filen '" + UpFile.FileName + "' sparad";
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        ViewBag.Message = "Error:" + e.Message.ToString() + " Filen '" + UpFile.FileName + "' har ej sparats";
+            //    }
+            //else
+            //{
+            //    ViewBag.Message = "Du måste ange en fil!";
+            //}
             return View();
         }
     }
