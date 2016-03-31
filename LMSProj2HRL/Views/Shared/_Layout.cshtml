@@ -39,15 +39,21 @@
                         }
                         catch (Exception e)
                         {
-
+                            ViewBag.Message = "You are not supposed to see this";
                         }
 
                         <li>@Html.ActionLink("Studenter", "Index", "Students")</li>
                         <li>@Html.ActionLink("Klass", "Index", "SchoolClasses")</li>
                         <li>@Html.ActionLink("Schema", "Index", "Timetables")</li>
-                        <li>@Html.ActionLink("Filer", "Index", "Upload")</li>
-                        <li>@Html.ActionLink("Gemensam", "Index", "Common")</li>
-                        <li>@Html.ActionLink("Klass-Gemensam", "Index", "ClassFiles")</li>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Filer</a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Gemensam", "Index", "Common")</li>
+                                <li>@Html.ActionLink("Klass-Gemensam", "Index", "ClassFiles")</li>
+                                <li>@Html.ActionLink("Inlämningsfiler", "Index", "Upload")</li>
+                            </ul>
+                        </li>
                     }
                     else
                     {
