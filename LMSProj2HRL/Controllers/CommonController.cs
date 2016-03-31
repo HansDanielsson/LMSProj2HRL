@@ -30,7 +30,6 @@ namespace LMSProj2HRL.Controllers
                     string path = Path.Combine(Server.MapPath("~/FileHandler/Shared"), Path.GetFileName(UpFile.FileName));
                     UpFile.SaveAs(path);
                     ViewBag.Message = "Filen sparad";
-
                 }
                 catch (Exception e)
                 {
