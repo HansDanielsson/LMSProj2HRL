@@ -21,10 +21,10 @@ namespace LMSProj2HRL.Controllers
             if (UpFile != null && UpFile.ContentLength > 0)
                 try
                 {
-                    string path = Path.Combine(Server.MapPath("~/FileHandler"), Path.GetFileName(UpFile.FileName));
+                    string FileHandler = "~/FileHandler/" + System.Web.HttpContext.Current.Session["SchoolClass"].ToString();
+                    string path = Path.Combine(Server.MapPath(FileHandler), Path.GetFileName(UpFile.FileName));
                     UpFile.SaveAs(path);
 					ViewBag.Message = "Filen '" + UpFile.FileName + "' sparad";
-
                 }
                 catch (Exception e)
                 {

@@ -31,14 +31,23 @@ namespace LMSProj2HRL.Helpers
             }
             else
             {
-                //var Student = from s in db.Student where (s.LoginId == _loginId) && (s.PassWD == _passWD) select s.SCId;
-                IEnumerable<int> Student = from s in db.Student where (s.LoginId == _loginId) && (s.PassWD == _passWD) select s.SCId;
+                //SELECT Name FROM SchoolClasses c
+                //            JOIN Students s
+                //            WHERE c.SCId = s.SCId AND LoginId = _loginId AND PassWD = _passWD;
+                //
+                //IEnumerable<string> Student = from s in db.Student where (s.LoginId == _loginId) && (s.PassWD == _passWD) select s.SCId;
+                IEnumerable<string> Student = from c in db.SchoolClass
+                                              join s in db.Student
+                                              on c.SCId equals s.SCId
+                                              where ((s.LoginId == _loginId) && (s.PassWD == _passWD))
+                                              select c.Name;
+                                             
                 if (Student.Count() == 1)
                 {
                     // Sätt global variabel till Students status
                     HttpContext.Current.Session["UserLMS"] = 2;
                     HttpContext.Current.Session["UserName"] = _loginId;
-                    HttpContext.Current.Session["SchoolClass"] = Student.ElementAt(0).ToString();
+                    HttpContext.Current.Session["SchoolClass"] = Student.ElementAt(0) + "/"; // Avslutas med / till katalog namnet
                     return true;
                 }
                 else

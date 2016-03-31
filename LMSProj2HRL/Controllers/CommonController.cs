@@ -1,10 +1,11 @@
-﻿using System;
+﻿using LMSProj2HRL.DataAccessLayer;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using LMSProj2HRL.DataAccessLayer;
+
 
 namespace LMSProj2HRL.Controllers
 {
@@ -17,23 +18,7 @@ namespace LMSProj2HRL.Controllers
             string path = Server.MapPath("~/FileHandler/Shared/");
             var dir = new DirectoryInfo(path);
             var files = dir.EnumerateFiles().Select(f => f.Name);
-
-            // SELECT Name From SchoolClasses c, Students s WHERE s.LoginId = ? AND s.SCId = c.SCId
-            string SC = System.Web.HttpContext.Current.Session["SchoolClass"].ToString();
-            IEnumerable<string> ClassName = (from c in db.SchoolClass
-                            where c.SCId.ToString() == SC
-                            select c.Name);
-
-            path = Server.MapPath("~/FileHandler/Shared/" + ClassName.ElementAt(0));
-            dir = new DirectoryInfo(path);
-            var files2 = dir.EnumerateFiles().Select(f => f.Name);
-            
-            for (int i = files2.Count()-1; i >= 0; i--)
-            {
-                //files2.ElementAt(i) = ClassName.ElementAt(0) + "/" + files2.ElementAt(i);
-            }
-            var files3 = files.Concat(files2);
-            return View(files3);
+            return View(files);
         }
 
         [HttpPost]
