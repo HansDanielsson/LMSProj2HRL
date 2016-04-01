@@ -25,22 +25,6 @@ namespace LMSProj2HRL.Controllers
         public ActionResult Index(HttpPostedFileBase UpFile)
         {
             this.SaveFiles("Shared", UpFile);
-            //if (UpFile != null && UpFile.ContentLength > 0)
-            //    try
-            //    {
-            //        string FileHandler = "~/FileHandler/Shared";
-            //        string path = Path.Combine(Server.MapPath(FileHandler), Path.GetFileName(UpFile.FileName));
-            //        UpFile.SaveAs(path);
-            //        ViewBag.Message = "Filen '" + UpFile.FileName + "' sparad";
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        ViewBag.Message = "Error:" + e.Message.ToString() + " Filen '" + UpFile.FileName + "' har ej sparats";
-            //    }
-            //else
-            //{
-            //    ViewBag.Message = "Du måste ange en fil!";
-            //}
             return View();
         }
     }

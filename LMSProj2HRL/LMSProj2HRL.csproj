@@ -330,7 +330,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="FileHandler\Shared\Te1A\" />
     <Folder Include="FileHandler\Shared\Te2B\" />
-    <Folder Include="Views\Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
