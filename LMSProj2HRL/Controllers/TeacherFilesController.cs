@@ -58,6 +58,11 @@ namespace LMSProj2HRL.Controllers
             string path = Server.MapPath("~/FileHandler/" + id + "/");
             var dir = new DirectoryInfo(path);
             var files = dir.EnumerateFiles().Select(f => f.Name);
+            //IEnumerable<string> file2;
+            for (int i = files.Count() - 1; i >= 0; i--)
+            {
+                //file2.ElementAt = id + "/" + files(i);
+            }
             return View(files);
         }
     }
