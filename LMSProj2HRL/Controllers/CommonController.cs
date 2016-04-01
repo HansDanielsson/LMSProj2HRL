@@ -21,7 +21,8 @@ namespace LMSProj2HRL.Controllers
         public ActionResult Index(HttpPostedFileBase UpFile)
         {
             this.SaveFiles("Shared", UpFile);
-            return View();
+            //return View();
+            return RedirectToAction("Index");
         }
     }
 }

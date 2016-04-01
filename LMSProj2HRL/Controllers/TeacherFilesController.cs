@@ -2,12 +2,13 @@
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 using LMSProj2HRL.DataAccessLayer;
 
 namespace LMSProj2HRL.Controllers
 {
-    public class TeacherFilesController : Controller
+    public class TeacherFilesController : HelpersController
     {
 
         private ItemContext db = new ItemContext();
@@ -15,6 +16,19 @@ namespace LMSProj2HRL.Controllers
         // GET: TeacherFiles
         public ActionResult Index()
         {
+            return View();
+        }
+        /// <summary>
+        /// Hur fixar man till en ny parameter?
+        /// </summary>
+        /// <param name="UpFile"></param>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult Index(HttpPostedFileBase UpFile)
+        {
+            string path = "Shared/Mt1A";
+            this.SaveFiles(path, UpFile);
             return View();
         }
 
