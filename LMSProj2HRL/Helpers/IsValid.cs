@@ -21,12 +21,12 @@ namespace LMSProj2HRL.Helpers
         {
             ItemContext db = new ItemContext();
             _passWD = Sha1.Encode(_passWD);
-            IEnumerable<string> Teacher = from t in db.Teacher where (t.LoginId == _loginId) && (t.PassWD == _passWD) select t.FName;
+            IEnumerable<string> Teacher = from t in db.Teacher where (t.LoginId == _loginId) && (t.PassWD == _passWD) select t.TeId.ToString();
             if (Teacher.Count() == 1)
             {
                 // Sätt global variabel till Teachers status
                 HttpContext.Current.Session["UserLMS"] = 1;
-                HttpContext.Current.Session["UserName"] = _loginId;
+                HttpContext.Current.Session["SchoolClass"] = Teacher.ElementAt(0);
                 return true;
             }
             else
@@ -46,7 +46,6 @@ namespace LMSProj2HRL.Helpers
                 {
                     // Sätt global variabel till Students status
                     HttpContext.Current.Session["UserLMS"] = 2;
-                    HttpContext.Current.Session["UserName"] = _loginId;
                     HttpContext.Current.Session["SchoolClass"] = Student.ElementAt(0);
                     return true;
                 }
