@@ -21,7 +21,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    
+
                     @if (Request.IsAuthenticated)
                     {
                         <li>
@@ -36,7 +36,7 @@
                         }
                         catch (Exception e)
                         {
-                            ViewBag.Message = "You are not supposed to see this";
+                            ViewBag.Message = "Logga in först";
                         }
 
                         <li>@Html.ActionLink("Studenter", "Index", "Students")</li>
@@ -47,8 +47,26 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Filer</a>
                             <ul class="dropdown-menu">
                                 <li>@Html.ActionLink("Gemensam", "Index", "Common")</li>
-                                <li>@Html.ActionLink("Klass-Gemensam", "Index", "ClassFiles")</li>
-                                <li>@Html.ActionLink("Inlämningsfiler", "Index", "Upload")</li>
+                                @try
+                                {
+                                    if (((int)System.Web.HttpContext.Current.Session["UserLMS"]) == 1)
+                                    {
+                                        int TeId = (int)System.Web.HttpContext.Current.Session["SchoolClass"];
+                                        <li>@Html.ActionLink("Klass-Gemensam", "ListClases", "TeacherFiles", new { id = TeId }, null)</li>
+                                        <li>@Html.ActionLink("Inlämningsfiler", "ListClases", "TeacherFiles", new { id = TeId }, null)</li>
+
+                                    }
+                                    else
+                                    {
+                                        <li>@Html.ActionLink("Klass-Gemensam", "Index", "ClassFiles")</li>
+                                        <li>@Html.ActionLink("Inlämningsfiler", "Index", "Upload")</li>
+                                    }
+
+                                }
+                                catch (Exception e)
+                                {
+                                    ViewBag.Message = "Logga in först";
+                                }
                             </ul>
                         </li>
                     }

@@ -21,7 +21,7 @@ namespace LMSProj2HRL.Helpers
         {
             ItemContext db = new ItemContext();
             _passWD = Sha1.Encode(_passWD);
-            IEnumerable<string> Teacher = from t in db.Teacher where (t.LoginId == _loginId) && (t.PassWD == _passWD) select t.TeId.ToString();
+            IEnumerable<int> Teacher = from t in db.Teacher where (t.LoginId == _loginId) && (t.PassWD == _passWD) select t.TeId;
             if (Teacher.Count() == 1)
             {
                 // Sätt global variabel till Teachers status

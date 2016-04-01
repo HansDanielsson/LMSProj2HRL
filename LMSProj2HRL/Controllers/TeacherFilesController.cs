@@ -26,13 +26,13 @@ namespace LMSProj2HRL.Controllers
         }
 
         // GET´: TeacherFiles/ListClases/TeId
-        public ActionResult ListClases(int? TeId)
+        public ActionResult ListClases(int? id)
         {
-            if (TeId == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            IEnumerable<string> schoolClass = from s in db.SchoolClass where (s.TeId == TeId) select s.Name;
+            IEnumerable<string> schoolClass = from s in db.SchoolClass where (s.TeId == id) select s.Name;
             return View(schoolClass);
         }
     }
