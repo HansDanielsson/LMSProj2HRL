@@ -328,6 +328,7 @@
     <Content Include="Views\ClassFiles\Index.cshtml" />
     <Content Include="Views\TeacherFiles\ListClases.cshtml" />
     <Content Include="Views\TeacherFiles\ListSharedClases.cshtml" />
+    <Content Include="Views\TeacherFiles\ListTeacherFiles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
