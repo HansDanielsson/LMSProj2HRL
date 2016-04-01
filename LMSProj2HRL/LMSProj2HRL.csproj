@@ -327,6 +327,7 @@
     <Content Include="Views\Common\Index.cshtml" />
     <Content Include="Views\ClassFiles\Index.cshtml" />
     <Content Include="Views\TeacherFiles\ListClases.cshtml" />
+    <Content Include="Views\TeacherFiles\ListSharedClases.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

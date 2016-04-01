@@ -1,0 +1,23 @@
+﻿@model IEnumerable<string>
+@{
+    ViewBag.Title = "ListSharedClases";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string path = "~/FileHandler/Shared/"
+}
+
+<h2>ListSharedClases</h2>
+
+<ul>
+    @if (Model != null)
+    {
+        foreach (var fName in Model)
+        {
+            var name = fName;
+            var link = @Url.Content(path) + name.Replace(" ", "%20");
+
+            <li>
+                <a href="@link">@name</a>
+            </li>
+        }
+    }
+</ul>
