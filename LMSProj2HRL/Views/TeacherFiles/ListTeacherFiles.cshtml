@@ -1,11 +1,10 @@
 ﻿@model IEnumerable<string>
 @{
-    ViewBag.Title = "ListClases";
+    ViewBag.Title = "Lista Filer";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    string path = "~/TeacherFiles/ListTeacherFiles?id=";
 }
 
-<h2>Inlämningar per Klass</h2>
+<h2>Lista Filer</h2>
 
 <ul>
     @if (Model != null)
@@ -13,7 +12,7 @@
         foreach (var fName in Model)
         {
             var name = fName;
-            var link = @Url.Content(path) + name.Replace(" ", "%20");
+            var link = @Url.Content("~/FileHandler/") + name.Replace(" ", "%20");
 
             <li>
                 <a href="@link">@name</a>

@@ -11,7 +11,7 @@ namespace LMSProj2HRL.Controllers
 {
     public class CommonController : HelpersController
     {
-        private ItemContext db = new ItemContext();
+        //private ItemContext db = new ItemContext();
         // GET: Common
         public ActionResult Index()
         {

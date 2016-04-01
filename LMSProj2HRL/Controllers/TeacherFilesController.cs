@@ -9,6 +9,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using LMSProj2HRL.DataAccessLayer;
+using System.IO;
 
 namespace LMSProj2HRL.Controllers
 {
@@ -36,7 +37,7 @@ namespace LMSProj2HRL.Controllers
             return View(schoolClass);
         }
 
-        // GET´: TeacherFiles/ListClases/5
+        // GET´: TeacherFiles/ListSharedClases/5
         public ActionResult ListSharedClases(int? id)
         {
             if (id == null)
@@ -45,6 +46,19 @@ namespace LMSProj2HRL.Controllers
             }
             IEnumerable<string> schoolClass = from s in db.SchoolClass where (s.TeId == id) select s.Name;
             return View(schoolClass);
+        }
+
+        // GET´: TeacherFiles/ListClases/5
+        public ActionResult ListTeacherFiles(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            string path = Server.MapPath("~/FileHandler/" + id + "/");
+            var dir = new DirectoryInfo(path);
+            var files = dir.EnumerateFiles().Select(f => f.Name);
+            return View(files);
         }
     }
 }
