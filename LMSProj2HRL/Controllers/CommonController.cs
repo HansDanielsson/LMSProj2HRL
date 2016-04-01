@@ -1,7 +1,4 @@
-﻿using LMSProj2HRL.DataAccessLayer;
-using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -11,7 +8,6 @@ namespace LMSProj2HRL.Controllers
 {
     public class CommonController : HelpersController
     {
-        //private ItemContext db = new ItemContext();
         // GET: Common
         public ActionResult Index()
         {

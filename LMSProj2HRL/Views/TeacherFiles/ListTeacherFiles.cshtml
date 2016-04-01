@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Lista Filer";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    string path = "~/FileHandler/";
 }
 
 <h2>Lista Filer</h2>
@@ -12,7 +13,7 @@
         foreach (var fName in Model)
         {
             var name = fName;
-            var link = @Url.Content("~/FileHandler/") + name.Replace(" ", "%20");
+            var link = @Url.Content(path) + name.Replace(" ", "%20");
 
             <li>
                 <a href="@link">@name</a>

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Data;
-using System.Data.SqlClient;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using LMSProj2HRL.DataAccessLayer;
+
 namespace LMSProj2HRL.Helpers
 {
     public class IsValid
@@ -35,7 +32,6 @@ namespace LMSProj2HRL.Helpers
                 //            JOIN Students s
                 //            WHERE c.SCId = s.SCId AND LoginId = _loginId AND PassWD = _passWD;
                 //
-                //IEnumerable<string> Student = from s in db.Student where (s.LoginId == _loginId) && (s.PassWD == _passWD) select s.SCId;
                 IEnumerable<string> Student = from c in db.SchoolClass
                                               join s in db.Student
                                               on c.SCId equals s.SCId

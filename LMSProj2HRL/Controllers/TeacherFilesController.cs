@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Data;
-using System.Data.Entity;
-using System.Data.SqlClient;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using LMSProj2HRL.DataAccessLayer;
-using System.IO;
 
 namespace LMSProj2HRL.Controllers
 {
@@ -21,8 +15,6 @@ namespace LMSProj2HRL.Controllers
         // GET: TeacherFiles
         public ActionResult Index()
         {
-            //IEnumerable<string> schoolClass = from s in db.SchoolClass where (s.TeId == HttpContext.Current.Session["SchoolClass"]) select s.Name;
-           
             return View();
         }
 
@@ -48,7 +40,7 @@ namespace LMSProj2HRL.Controllers
             return View(schoolClass);
         }
 
-        // GET´: TeacherFiles/ListClases/5
+        // GET´: TeacherFiles/ListClases/KlassName
         public ActionResult ListTeacherFiles(string id)
         {
             if (id == null)
@@ -57,13 +49,13 @@ namespace LMSProj2HRL.Controllers
             }
             string path = Server.MapPath("~/FileHandler/" + id + "/");
             var dir = new DirectoryInfo(path);
-            var files = dir.EnumerateFiles().Select(f => f.Name);
-            //IEnumerable<string> file2;
-            for (int i = files.Count() - 1; i >= 0; i--)
+            IEnumerable<string> files = dir.EnumerateFiles().Select(f => f.Name);
+            List<string> files2 = new List<string>();
+            for (int i = 0 ; i < files.Count(); i++)
             {
-                //file2.ElementAt = id + "/" + files(i);
+                files2.Add(id + "/" + files.ElementAt(i));
             }
-            return View(files);
+            return View(files2);
         }
     }
 }
