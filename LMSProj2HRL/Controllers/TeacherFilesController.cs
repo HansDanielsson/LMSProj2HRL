@@ -25,8 +25,19 @@ namespace LMSProj2HRL.Controllers
             return View();
         }
 
-        // GET´: TeacherFiles/ListClases/TeId
+        // GET´: TeacherFiles/ListClases/5
         public ActionResult ListClases(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            IEnumerable<string> schoolClass = from s in db.SchoolClass where (s.TeId == id) select s.Name;
+            return View(schoolClass);
+        }
+
+        // GET´: TeacherFiles/ListClases/5
+        public ActionResult ListSharedClases(int? id)
         {
             if (id == null)
             {
