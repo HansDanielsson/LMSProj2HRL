@@ -21,16 +21,14 @@
         }
     }
 </ul>
-@if ((int)HttpContext.Current.Session["UserLMS"] == 2)
-{
-    <div>
-        @using (Html.BeginForm("Index", "TeacherFiles", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            <input type="file" name="UpFile" id="UpFile" value="Välj fil" />
-            <button type="submit">Ladda up</button>
-            <br />
-            <br />
-            @ViewBag.Message
-        }
-    </div>
-}
+
+<div>
+    @using (Html.BeginForm("Index", "TeacherFiles", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="file" name="UpFile" id="UpFile" value="Välj fil" />
+        <button type="submit">Ladda up</button>
+        <br />
+        <br />
+        @ViewBag.Message
+    }
+</div>
