@@ -12,19 +12,20 @@ namespace LMSProj2HRL.Controllers
     {
         private ItemContext db = new ItemContext();
         // GET: Common
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
-            string path = Server.MapPath("~/FileHandler/Shared/" + System.Web.HttpContext.Current.Session["SchoolClass"].ToString());
+            string path = Server.MapPath("~/FileHandler/Shared/" + id);
             var dir = new DirectoryInfo(path);
             var files = dir.EnumerateFiles().Select(f => f.Name);
             return View(files);
         }
 
         [HttpPost]
-        public ActionResult Index(HttpPostedFileBase UpFile)
+        public ActionResult Index(string id,HttpPostedFileBase UpFile)
         {
-            this.SaveFiles("Shared/" + System.Web.HttpContext.Current.Session["SchoolClass"].ToString(),UpFile);
-            return View();
+            this.SaveFiles("Shared/" + id ,UpFile);
+            return RedirectToAction("Index");
+            //return View();
         }
     }
 }
