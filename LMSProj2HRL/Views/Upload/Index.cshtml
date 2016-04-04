@@ -4,7 +4,8 @@
 }
 
 <h2>Lämna in inlämningsuppgifter</h2>
-
+@if ((int)HttpContext.Current.Session["UserLMS"] == 2)
+{
 <div>
     @using (Html.BeginForm("Index", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
@@ -16,3 +17,4 @@
         @ViewBag.Message
     } 
 </div>
+}
