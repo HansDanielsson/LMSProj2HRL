@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Klass-Gemensam";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    string path = "~/FileHandler/Shared/" + System.Web.HttpContext.Current.Session["SchoolClass"].ToString();
+    string path = "~/FileHandler/Shared/" + ViewBag.PathToClass + "/";
 }
 
 <h2>Klass-Gemensam</h2>

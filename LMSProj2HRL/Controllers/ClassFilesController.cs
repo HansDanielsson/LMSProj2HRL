@@ -14,7 +14,8 @@ namespace LMSProj2HRL.Controllers
         // GET: Common
         public ActionResult Index(string id)
         {
-            string path = Server.MapPath("~/FileHandler/Shared/" + id);
+            string path = Server.MapPath("~/FileHandler/Shared/" + id + "/");
+            ViewBag.PathToClass = id;
             var dir = new DirectoryInfo(path);
             var files = dir.EnumerateFiles().Select(f => f.Name);
             return View(files);
@@ -25,7 +26,6 @@ namespace LMSProj2HRL.Controllers
         {
             this.SaveFiles("Shared/" + id ,UpFile);
             return RedirectToAction("Index");
-            //return View();
         }
     }
 }
