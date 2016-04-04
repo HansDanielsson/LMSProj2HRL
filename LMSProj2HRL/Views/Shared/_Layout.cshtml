@@ -52,14 +52,14 @@
                                     if (((int)System.Web.HttpContext.Current.Session["UserLMS"]) == 1)
                                     {
                                         int TeId = (int)System.Web.HttpContext.Current.Session["SchoolClass"];
-                                        <li>@Html.ActionLink("Klass-Gemensam", "Index", "ClassFiles", new { id = HttpContext.Current.Session["SchoolClass"] }, null)</li>
-                                        <li>@Html.ActionLink("Inlämningsfiler", "ListClases", "TeacherFiles", new { id = TeId }, null)</li>
+                                        <li>@Html.ActionLink("Klass-Gemensam", "ListSharedClases", "TeacherFiles", new { id = (int)HttpContext.Current.Session["SchoolClass"] }, null)</li>
+                                        <li>@Html.ActionLink("Inlämningsfiler", "ListClases", "TeacherFiles", new { id = (int)HttpContext.Current.Session["SchoolClass"] }, null)</li>
 
                                     }
                                     else
                                     {
-                                        <li>@Html.ActionLink("Klass-Gemensam", "Index", "ClassFiles", new { id = HttpContext.Current.Session["SchoolClass"] }, null)</li>
-                                        <li>@Html.ActionLink("Inlämningsfiler", "Index", "Upload")</li>
+                                        <li>@Html.ActionLink("Klass-Gemensam", "Index", "ClassFiles", new { id = (string)HttpContext.Current.Session["SchoolClass"] }, null)</li>
+                                        <li>@Html.ActionLink("Inlämningsfiler", "Index", "Upload", new { id = (string)HttpContext.Current.Session["SchoolClass"] }, null)</li>
                                     }
 
                                 }

@@ -32,7 +32,7 @@ namespace LMSProj2HRL.Controllers
             return View();
         }
 
-        // GET´: TeacherFiles/ListClases/5
+        // GET´: TeacherFiles/ListClases
         public ActionResult ListClases(int? id)
         {
             if (id == null)
