@@ -10,7 +10,7 @@ namespace LMSProj2HRL.Controllers
 {
     public class ClassFilesController : HelpersController
     {
-        private ItemContext db = new ItemContext();
+        //private ItemContext db = new ItemContext();
         // GET: Common
         public ActionResult Index(string id)
         {

@@ -11,6 +11,7 @@ namespace LMSProj2HRL.Controllers
         public ActionResult Index(string id)
         {
             string path = Server.MapPath("~/FileHandler/" + id + "/");
+            ViewBag.PathToClass = id;
             var dir = new DirectoryInfo(path);
             var files = dir.EnumerateFiles().Select(f => f.Name);
 			return View(files);
@@ -19,7 +20,7 @@ namespace LMSProj2HRL.Controllers
         [HttpPost]
         public ActionResult Index(string id, HttpPostedFileBase UpFile)
         {
-            this.SaveFiles(id, UpFile); //used to be (System.Web.HttpContext.Current.Session["SchoolClass"].ToString(), UpFile);
+            this.SaveFiles(id, UpFile);
             return View();
         }
     }
