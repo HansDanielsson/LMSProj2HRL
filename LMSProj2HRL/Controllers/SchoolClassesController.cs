@@ -55,8 +55,9 @@ namespace LMSProj2HRL.Controllers
 				int totsum = db.SchoolClass.Where(s => s.Name == schoolClass.Name).Count();
 				if (totsum > 0)
 				{
-					int id = 1;
-					return RedirectToAction("Message", "SchoolClasses", new { id = id }); //ej dubletter
+				/*	int id = 1;
+					return RedirectToAction("Message", "SchoolClasses", new { id = id }); //ej dubletter*/
+					return RedirectToAction("Message"); //ej dubletter
 				}
 
 				string path = Server.MapPath("~/FileHandler/" + schoolClass.Name);
@@ -81,16 +82,9 @@ namespace LMSProj2HRL.Controllers
 			return View(schoolClass);
 		}
 
-		public ActionResult Message(int? num)
+		public ActionResult Message()
 		{
-			if (num == 1)
-			{
-				ViewBag.Message = "Det går ej att ha dubbletter!";
-			}
-			else
-			{
-				ViewBag.Message = "Det går ej att radera skolklassen. Schemat måste tas bort först.";
-			}
+			ViewBag.Message = "Det går ej att ha dubbletter!";
 			return PartialView();
 		}
 
@@ -154,8 +148,9 @@ namespace LMSProj2HRL.Controllers
 			int totsum = db.Timetable.Where(t => t.TtId == schoolClass.SCId).Count();
 			if (totsum > 0)
 			{
-				int ig = 2;
-				return RedirectToAction("Message", "SchoolClasses", new { ig = ig });     //schema kvar att ta bort!
+				Timetable timetable = db.Timetable.Find(schoolClass.SCId);
+				db.Timetable.Remove(timetable);
+				//return RedirectToAction("Message");     //schema kvar att ta bort!
 			}
 
 			db.SchoolClass.Remove(schoolClass);
