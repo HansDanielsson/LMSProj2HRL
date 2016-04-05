@@ -1,4 +1,6 @@
-﻿using System.Web;
+﻿using System.Linq;
+using System.IO;
+using System.Web;
 using System.Web.Mvc;
 
 namespace LMSProj2HRL.Controllers
@@ -8,13 +10,17 @@ namespace LMSProj2HRL.Controllers
         // GET: Upload
         public ActionResult Index(string id)
         {
-			return View();
+            string path = Server.MapPath("~/FileHandler/" + id + "/");
+            ViewBag.PathToClass = id;
+            var dir = new DirectoryInfo(path);
+            var files = dir.EnumerateFiles().Select(f => f.Name);
+			return View(files);
         }
 	
         [HttpPost]
         public ActionResult Index(string id, HttpPostedFileBase UpFile)
         {
-            this.SaveFiles(id, UpFile); //used to be (System.Web.HttpContext.Current.Session["SchoolClass"].ToString(), UpFile);
+            this.SaveFiles(id, UpFile);
             return View();
         }
     }
