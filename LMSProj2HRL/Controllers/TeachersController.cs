@@ -47,7 +47,7 @@ namespace LMSProj2HRL.Controllers
         {
             if (ModelState.IsValid)
             {
-				var result = from v in db.Teacher
+			/*	var result = from v in db.Teacher
 							 where v.LoginId == teacher.LoginId
 							 select v;
 				int xcount = 0;
@@ -58,7 +58,13 @@ namespace LMSProj2HRL.Controllers
 					{
 						return RedirectToAction("Message"); //ej dubletter
 					}
-				}		
+				}*/
+				int totsum = db.Teacher.Where(s => s.LoginId == teacher.LoginId).Count();
+				if (totsum > 0)
+				{
+					return RedirectToAction("Message"); //ej dubletter
+				}
+
                 teacher.PassWD = Helpers.Sha1.Encode(teacher.PassWD);
                 db.Teacher.Add(teacher);
                 db.SaveChanges();
