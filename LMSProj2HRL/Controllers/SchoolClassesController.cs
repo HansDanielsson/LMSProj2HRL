@@ -150,7 +150,6 @@ namespace LMSProj2HRL.Controllers
 			{
 				Timetable timetable = db.Timetable.Find(schoolClass.SCId);
 				db.Timetable.Remove(timetable);
-				//return RedirectToAction("Message");     //schema kvar att ta bort!
 			}
 
 			db.SchoolClass.Remove(schoolClass);
