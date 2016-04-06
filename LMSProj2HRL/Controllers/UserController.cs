@@ -5,18 +5,21 @@ namespace LMSProj2HRL.Controllers
 {
     public class UserController : Controller
     {
-        // GET: User
-        public ActionResult Index()
-        {
-            return View();
-        }
-
+        /// <summary>
+        /// Logga in i systemet
+        /// </summary>
+        /// <returns>Visar inloggningsbilden</returns>
         [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
 
+        /// <summary>
+        /// Kollar upp vilken inloggning man har till LMS
+        /// </summary>
+        /// <param name="user">Login uppgifter</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Login(Models.Teacher user)
         {
@@ -35,6 +38,10 @@ namespace LMSProj2HRL.Controllers
             return View(user);
         }
 
+        /// <summary>
+        /// Logga ut från LMS
+        /// </summary>
+        /// <returns>Till Home/Index</returns>
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
