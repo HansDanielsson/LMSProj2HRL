@@ -13,7 +13,12 @@ namespace LMSProj2HRL.Controllers
 
         private ItemContext db = new ItemContext();
 
-        // GET´: TeacherFiles/ListClases
+        // GET : TeacherFiles/ListClases
+		/// <summary>
+		/// Listar inlämningsuppgifter per klass och klasslärare
+		/// </summary>
+		/// <param name="id">lärarens id</param>
+		/// <returns>listar filer som är elevers inlämningsuppgifter</returns>
         public ActionResult ListClases(int? id)
         {
             if (id == null)
@@ -24,7 +29,12 @@ namespace LMSProj2HRL.Controllers
             return View(schoolClass);
         }
 
-        // GET´: TeacherFiles/ListSharedClases/5
+        // GET: TeacherFiles/ListSharedClases/5
+		/// <summary>
+		/// Listar dokument som är gemensamma för alla klasser och alla lärare och elever
+		/// </summary>
+		/// <param name="id">lärarens id</param>
+		/// <returns>lista på filerna som är under Gemensamma-Filer</returns>
         public ActionResult ListSharedClases(int? id)
         {
             if (id == null)

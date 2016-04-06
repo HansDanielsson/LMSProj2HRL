@@ -55,9 +55,8 @@ namespace LMSProj2HRL.Controllers
 				{
 					db.SaveChanges();
 				}
-				catch (Exception e)
+				catch									//om shema med samma namn finns
 				{
-                    ViewBag.Message = e.Message;
 					return RedirectToAction("Message");	//inga dubbletter
 				}
                 return RedirectToAction("Index");

@@ -7,11 +7,15 @@ using LMSProj2HRL.Models;
 
 namespace LMSProj2HRL.Controllers
 {
-    public class TeachersController : Controller
+	public class TeachersController : Controller
     {
         private ItemContext db = new ItemContext();
 
         // GET: Teachers
+		/// <summary>
+		/// Listar alla lärare
+		/// </summary>
+		/// <returns>Lista med lärare</returns>
         public ActionResult Index()
         {
             return View(db.Teacher.ToList());
@@ -47,22 +51,10 @@ namespace LMSProj2HRL.Controllers
         {
             if (ModelState.IsValid)
             {
-			/*	var result = from v in db.Teacher
-							 where v.LoginId == teacher.LoginId
-							 select v;
-				int xcount = 0;
-				foreach (Teacher v in result)
-				{
-					xcount++;
-					if (xcount > 0)
-					{
-						return RedirectToAction("Message"); //ej dubletter
-					}
-				}*/
 				int totsum = db.Teacher.Where(s => s.LoginId == teacher.LoginId).Count();
-				if (totsum > 0)
+				if (totsum > 0)			//om ej noll då finns redan läraren
 				{
-					return RedirectToAction("Message"); //ej dubletter
+					return RedirectToAction("Message"); //Dubletter ej tillåtet
 				}
 
                 teacher.PassWD = Helpers.Sha1.Encode(teacher.PassWD);
