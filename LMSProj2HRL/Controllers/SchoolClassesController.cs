@@ -14,6 +14,10 @@ namespace LMSProj2HRL.Controllers
 		private ItemContext db = new ItemContext();
 
 		// GET: SchoolClasses
+        /// <summary>
+        /// Listar alla skolklasser som har en lärare och ibland schema
+        /// </summary>
+        /// <returns>Visar en lista på skolklasser</returns>
 		public ActionResult Index()
 		{
 			var schoolClass = db.SchoolClass.Include(s => s.Teacher).Include(s => s.Timetable);
@@ -55,8 +59,6 @@ namespace LMSProj2HRL.Controllers
 				int totsum = db.SchoolClass.Where(s => s.Name == schoolClass.Name).Count();
 				if (totsum > 0)
 				{
-				/*	int id = 1;
-					return RedirectToAction("Message", "SchoolClasses", new { id = id }); //ej dubletter*/
 					return RedirectToAction("Message"); //ej dubletter
 				}
 
@@ -139,6 +141,11 @@ namespace LMSProj2HRL.Controllers
 		}
 
 		// POST: SchoolClasses/Delete/5
+        /// <summary>
+        /// Tar bort en klass, kollar att schemat tas bort samt kataloger och filer till klassen
+        /// </summary>
+        /// <param name="id">Index id till klassen</param>
+        /// <returns></returns>
 		[HttpPost, ActionName("Delete")]
 		[ValidateAntiForgeryToken]
 		public ActionResult DeleteConfirmed(int id)
@@ -179,4 +186,3 @@ namespace LMSProj2HRL.Controllers
 		}
 	}
 }
-

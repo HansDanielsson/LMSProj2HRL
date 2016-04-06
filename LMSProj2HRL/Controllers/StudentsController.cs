@@ -12,6 +12,10 @@ namespace LMSProj2HRL.Controllers
         private ItemContext db = new ItemContext();
 
         // GET: Students
+        /// <summary>
+        /// Listar studenter och till vilken klass hen tillhör
+        /// </summary>
+        /// <returns>Listan av studenter och klass</returns>
         public ActionResult Index()
         {
             var student = db.Student.Include(s => s.SchoolClass);
@@ -43,27 +47,19 @@ namespace LMSProj2HRL.Controllers
         // POST: Students/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Sparar en ny student, kollar om dublett finns innan.
+        /// Kodar lösenordet till Sha1
+        /// </summary>
+        /// <param name="student">Student information</param>
+        /// <returns>Index vy om ok, tillbaka om fel</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "StId,LoginId,FName,SName,PassWD,SCId")] Student student)
         {
             if (ModelState.IsValid)
             {
-				/*var result = from v in db.Student
-							 where v.LoginId == student.LoginId
-							 select v;
-				int xcount = 0;
-				foreach (Student v in result)
-				{
-					xcount++;
-					if (xcount > 0)
-					{
-						return RedirectToAction("Message"); //ej dubletter
-					}
-				}*/
-
-				int totsum = db.Student.Where(s => s.LoginId == student.LoginId).Count();
-				if (totsum > 0)
+                if (db.Student.Where(s => s.LoginId == student.LoginId).Count() > 0)
 				{
 					return RedirectToAction("Message"); //ej dubletter
 				}
@@ -102,6 +98,11 @@ namespace LMSProj2HRL.Controllers
         // POST: Students/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Editerar en student och lagrar med lösenord i Sha1
+        /// </summary>
+        /// <param name="student">Data om en student</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "StId,LoginId,FName,SName,PassWD,SCId")] Student student)

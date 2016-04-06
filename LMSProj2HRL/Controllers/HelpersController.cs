@@ -7,6 +7,11 @@ namespace LMSProj2HRL.Controllers
 {
     public class HelpersController : Controller
     {
+        /// <summary>
+        /// Sparar filen på servern
+        /// </summary>
+        /// <param name="destPath">Sökväg</param>
+        /// <param name="UpFile">Filnamnet som ska sparas</param>
         public void SaveFiles(string destPath, HttpPostedFileBase UpFile)
         {
             if (UpFile != null && UpFile.ContentLength > 0)
